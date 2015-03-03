@@ -1,0 +1,30 @@
+<?php get_header(); ?>
+
+  <!--Start of main -->
+	<div class="main-container">
+
+    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
+    	<div class="content">
+				<?php the_content(); ?>
+			</div>
+            
+		<?php endwhile; ?>			
+						
+		<?php else : ?>
+						
+			<article id="post-not-found">
+		    <header>
+		    	<h1>Not Found</h1>
+		    </header>
+		    <section class="post-content">
+		    	<p>Sorry, but the requested resource was not found on this site.</p>
+		    </section>
+			</article>
+						
+		<?php endif; ?>
+
+	</div>
+  <!-- end of .main-container -->
+							
+<?php get_footer(); ?>

@@ -1,0 +1,9 @@
+wordpress/
+vendor/
+wp-content/plugins/
+wp-content/uploads/
+node_modules/
+wp-config.php
+wp-content/themes/default/library/build
+.DS_Store
+**/.DS_Store

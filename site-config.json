@@ -1,0 +1,21 @@
+{
+  "name": "site-name",
+  "description": "site-description",
+  "main": "library/js/main.js",
+  "themePath": "wp-content/themes/default/",
+  "host": "site-address",
+  "dbConfig": {
+    "local": {
+      "dbname": "",
+      "dbuser": "root",
+      "dbpassword": "6Nintendo9",
+      "dbhost": "127.0.0.1"
+    },
+    "remote": {
+      "dbname": "",
+      "dbuser": "",
+      "dbpassword": "",
+      "dbhost": ""
+    }
+  }
+}

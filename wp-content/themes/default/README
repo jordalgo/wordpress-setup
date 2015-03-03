@@ -1,0 +1,33 @@
+/******************************************************************
+Developed by Jordan Rome
+www.jordanrome.com
+jordan@jordanrome.com
+
+Based on the Bones (Responsive Edition) Wordpress Theme
+Developed by Eddie Machado
+http://themble.com/bones
+eddie@themble.com
+
+/******************************************************************
+DEVELOPMENT (Specifically CSS/LESS at this moment)
+******************************************************************/
+
+Note: please don't edit css directly as it will be overwritten if someone runs the grunt commands below.
+
+Learn LESS: http://lesscss.org/
+
+Install Global Requirements (if you haven't already)
+npm (www.npmjs.org)
+grunt (gruntjs.com/)
+grunt cli (gruntjs.com/)
+
+Setup Steps
+$ git init
+$ npm install
+$ grunt
+
+During LESS and JS Editing
+$ grunt
+
+Before uploading to server
+$ grunt --prod
