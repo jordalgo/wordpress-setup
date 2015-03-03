@@ -1,0 +1,23 @@
+{
+  "curly": true,
+  "eqeqeq": false,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "sub": true,
+  "undef": true,
+  "boss": true,
+  "indent": 2,
+  "noempty": true,
+  "smarttabs": true,
+  "expr": true,
+  "eqnull": true,
+  "browser": true,
+  "white": true,
+  "strict": false,
+  "undef": true,
+  "laxcomma": true,
+  "esnext": true,
+  "predef": [ "define", "alert", "jQuery", "require", "assert", "process", "module", "exports", "mocha", "global", "console", "__dirname", "describe", "it", "before", "beforeEach", "after", "afterEach", "xdescribe", "xit", "CustomEvent", "-Promise" ]
+}

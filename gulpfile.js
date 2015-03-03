@@ -5,30 +5,31 @@ var gulp = require('gulp')
   , browserSync = require('browser-sync')
 
   , siteConfig = require('./site-config.json')
-  , themePath = siteConfig.themePath
-  , themePathLibrary = themePath + 'library/'
+  , THEME_PATH = siteConfig.themePath
+  , THEME_LIBRARY_PATH = THEME_PATH + 'library/'
   , baseDestURL = '/'
-  , CSS_PATH = './library/style/css/'
-  , SCRIPT_PATH = './library/scripts/'
+  , LESS_PATH = THEME_LIBRARY_PATH + 'less/'
+  , SCRIPT_PATH = THEME_LIBRARY_PATH + 'js/'
+  , BUILD_PATH = THEME_LIBRARY_PATH + 'build/'
 
   , argv = require('yargs').argv
   ;
 
 // Less And CSS tasks
 gulp.task('less', function() {
-  return gulp.src('./library/style/less/style.less')
+  return gulp.src([LESS_PATH + 'style.less', LESS_PATH + 'style-base.less'])
     .pipe(plugins.less({
       generateSourceMap: true, // default true
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
-    .pipe(gulp.dest(CSS_PATH))
+    .pipe(gulp.dest(BUILD_PATH))
     ;
 });
 
 gulp.task('minify-css', ['less'], function() {
-  return gulp.src(CSS_PATH + 'style.css')
+  return gulp.src([BUILD_PATH + 'style.css', BUILD_PATH + 'style-base.css'])
     .pipe(plugins.minifyCss())
-    .pipe(gulp.dest(CSS_PATH))
+    .pipe(gulp.dest(BUILD_PATH))
     ;
 });
 
@@ -53,26 +54,26 @@ gulp.task('browserify', ['e6to5'], function() {
       transform: [browserifyHandlebars],
       shim: {
         jQuery: {
-          path: 'library/scripts/vendor/jquery.min.js',
+          path: SCRIPT_PATH + 'vendor/jquery.min.js',
           exports: '$'
         }
       }
     }))
-    .pipe(gulp.dest(SCRIPT_PATH + 'build/'))
+    .pipe(gulp.dest(BUILD_PATH))
     ;
 });
 
 gulp.task('uglify', ['browserify'], function() {
-  return gulp.src(SCRIPT_PATH + 'build/main.js')
+  return gulp.src(THEME_LIBRARY_PATH + 'build/main.js')
     .pipe(plugins.uglify())
-    .pipe(gulp.dest(SCRIPT_PATH + 'build/'))
+    .pipe(gulp.dest(BUILD_PATH))
     ;
 });
 
 // Watch tasks
 gulp.task('watch', function() {
   gulp.watch(SCRIPT_PATH + 'modules/*.js', ['jshint', 'browserify', browserSync.reload]);
-  gulp.watch('./library/style/less/**/*.less', ['less', browserSync.reload]);
+  gulp.watch(LESS_PATH + '*.less', ['less', browserSync.reload]);
   //gulp.watch(SCRIPT_PATH + 'templates/*.hbs', ['browserify', browserSync.reload]);
   gulp.watch('./wordpress/**/*.php', [browserSync.reload]);
 });
@@ -86,7 +87,6 @@ gulp.task('browser-sync', function () {
 });
 
 // Database Replacement
-
 function dbReplace(db) {
   return gulp.src(['./wp-content/wp-config.php'])
     .pipe(plugins.replace(/@@dbname/g, db.name))
