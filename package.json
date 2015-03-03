@@ -1,26 +1,27 @@
 {
-  "name": "Jordalgo Wordpress Site Boilerplate",
+  "name": "wordpress_site",
   "localhostPort": 8000,
   "private": true,
   "repository": {
     "type": "git"
   },
   "devDependencies": {
+    "browser-sync": "~1.8.2",
+    "browserify-handlebars": "~1.0.0",
     "gulp": "~3.8.10",
+    "gulp-6to5": "~2.0.0",
+    "gulp-browserify": "~0.5.0",
+    "gulp-define-module": "~0.1.1",
+    "gulp-handlebars": "~3.0.1",
+    "gulp-jshint": "~1.9.0",
     "gulp-less": "~2.0.1",
     "gulp-less-sourcemap": "~1.3.3",
     "gulp-load-plugins": "~0.8.0",
     "gulp-minify-css": "~0.3.11",
-    "gulp-jshint": "~1.9.0",
-    "jshint-stylish": "~1.0.0",
-    "gulp-handlebars": "~3.0.1",
-    "gulp-define-module": "~0.1.1",
-    "gulp-6to5": "~2.0.0",
-    "gulp-browserify": "~0.5.0",
+    "gulp-replace": "^0.5.3",
     "gulp-uglify": "~1.0.2",
-    "browserify-handlebars": "~1.0.0",
     "gulp-watch": "~3.0.0",
-    "browser-sync": "~1.8.2",
+    "jshint-stylish": "~1.0.0",
     "yargs": "~1.3.3"
   },
   "scripts": {

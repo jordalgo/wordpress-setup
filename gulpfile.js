@@ -4,9 +4,9 @@ var gulp = require('gulp')
   , browserifyHandlebars = require('browserify-handlebars')
   , browserSync = require('browser-sync')
 
-  , siteConfig = require('./site-config.json'),
-  , themePath = siteConfig.themePath,
-  , themePathLibrary = themePath + 'library/',
+  , siteConfig = require('./site-config.json')
+  , themePath = siteConfig.themePath
+  , themePathLibrary = themePath + 'library/'
   , baseDestURL = '/'
   , CSS_PATH = './library/style/css/'
   , SCRIPT_PATH = './library/scripts/'
@@ -14,6 +14,7 @@ var gulp = require('gulp')
   , argv = require('yargs').argv
   ;
 
+// Less And CSS tasks
 gulp.task('less', function() {
   return gulp.src('./library/style/less/style.less')
     .pipe(plugins.less({
@@ -31,8 +32,9 @@ gulp.task('minify-css', ['less'], function() {
     ;
 });
 
+// JS tasks
 gulp.task('jshint', function() {
-  return gulp.src(SCRIPT_PATH + 'modules/**/*.js')
+  return gulp.src(SCRIPT_PATH + 'modules/*.js')
     .pipe(plugins.jshint('.jshintrc'))
     .pipe(plugins.jshint.reporter('jshint-stylish'))
     .pipe(plugins.jshint.reporter('fail'));
@@ -67,11 +69,12 @@ gulp.task('uglify', ['browserify'], function() {
     ;
 });
 
+// Watch tasks
 gulp.task('watch', function() {
   gulp.watch(SCRIPT_PATH + 'modules/*.js', ['jshint', 'browserify', browserSync.reload]);
   gulp.watch('./library/style/less/**/*.less', ['less', browserSync.reload]);
-  gulp.watch(SCRIPT_PATH + 'templates/*.hbs', ['browserify', browserSync.reload]);
-  gulp.watch('./index.html', [browserSync.reload]);
+  //gulp.watch(SCRIPT_PATH + 'templates/*.hbs', ['browserify', browserSync.reload]);
+  gulp.watch('./wordpress/**/*.php', [browserSync.reload]);
 });
 
 gulp.task('browser-sync', function () {
@@ -82,6 +85,28 @@ gulp.task('browser-sync', function () {
    });
 });
 
+// Database Replacement
+
+function dbReplace(db) {
+  return gulp.src(['./wp-content/wp-config.php'])
+    .pipe(plugins.replace(/@@dbname/g, db.name))
+    .pipe(plugins.replace(/@@dbuser/g, db.user))
+    .pipe(plugins.replace(/@@dbpassword/g, db.password))
+    .pipe(plugins.replace(/@@dbhost/g, db.host))
+    .pipe(gulp.dest('.'));
+}
+
+gulp.task('db-replace-local', function(){
+  var db = siteConfig.dbConfig.local;
+  return dbReplace(db);
+});
+
+gulp.task('db-replace-remote', function(){
+  var db = siteConfig.dbConfig.remote;
+  return dbReplace(db);
+});
+
+// Git Stuff
 gulp.task('git-commit', function(){
   return gulp.src('.')
     .pipe(plugins.git.add({args: '--all'}))
@@ -102,6 +127,7 @@ gulp.task(
     'less'
     , 'jshint'
     , 'browserify'
+    , 'db-replace-remote'
     , 'watch'
     , 'browser-sync'
   ]
@@ -114,6 +140,7 @@ gulp.task(
     'minify-css'
     , 'jshint'
     , 'uglify'
+    , 'db-replace-remote'
   ],
   function() {
     gulp.start('git-push');

@@ -6,16 +6,16 @@
   "host": "site-address",
   "dbConfig": {
     "local": {
-      "dbname": "",
-      "dbuser": "root",
-      "dbpassword": "6Nintendo9",
-      "dbhost": "127.0.0.1"
+      "name": "",
+      "user": "root",
+      "password": "6Nintendo9",
+      "host": "127.0.0.1"
     },
     "remote": {
-      "dbname": "",
-      "dbuser": "",
-      "dbpassword": "",
-      "dbhost": ""
+      "name": "",
+      "user": "",
+      "password": "",
+      "host": ""
     }
   }
 }
