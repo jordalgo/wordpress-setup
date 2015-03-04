@@ -75,7 +75,8 @@ gulp.task('watch', function() {
   gulp.watch(SCRIPT_PATH + 'modules/*.js', ['jshint', 'browserify', browserSync.reload]);
   gulp.watch(LESS_PATH + '*.less', ['less', browserSync.reload]);
   //gulp.watch(SCRIPT_PATH + 'templates/*.hbs', ['browserify', browserSync.reload]);
-  gulp.watch('./wordpress/**/*.php', [browserSync.reload]);
+  gulp.watch(THEME_PATH + '*.php', [browserSync.reload]);
+  gulp.watch('./wp-content/wp-config.php', ['db-replace-local', browserSync.reload]);
 });
 
 gulp.task('browser-sync', function () {
@@ -121,6 +122,17 @@ gulp.task('git-push', ['git-commit'], function(done){
   });
 });
 
+// Rsync
+gulp.task('rsync', function() {
+  gulp.src('./')
+    .pipe(plugins.rsync({
+      hostname: 'example.com',
+      destination: '/public_html',
+      progress: true,
+      exclude: ['node_modules/', '.git/', 'wp-content/uploads/']
+    }));
+});
+
 gulp.task(
   'default',
   [
@@ -141,6 +153,7 @@ gulp.task(
     , 'jshint'
     , 'uglify'
     , 'db-replace-remote'
+    , 'rsync'
   ],
   function() {
     gulp.start('git-push');

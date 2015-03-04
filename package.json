@@ -27,8 +27,8 @@
   },
   "scripts": {
     "start": "npm install",
-    "build": "grunt --deploy",
-    "dev": "grunt",
+    "build": "gulp --deploy",
+    "dev": "gulp",
     "test": "grunt test"
   },
   "author": "Wordpress Team with Custom theme by Jordan Rome",

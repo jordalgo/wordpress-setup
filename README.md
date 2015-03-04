@@ -1,25 +1,12 @@
-{%= themename %} Website
-
-Developed by Jordan Rome
-'www.jordanrome.com'
-jordan@jordanrome.com
-
-Theme Based on the Bones (Responsive Edition) Wordpress Theme
-Developed by Eddie Machado
-'http://themble.com/bones'
-eddie@themble.com
-
-And the wordpress install based on
-David Winter's Article
-'http://davidwinter.me/articles/2012/04/09/install-and-manage-wordpress-with-git/'
+A Wordpress Website: by (Jordan Rome)[http://www.jordanrome.com]
 
 ## Setup
 
 #### Clone this Repo and Setup Remotes
 
 ```bash
-git clone URL my-new-site
-git remote add upstream URL
+git clone git@bitbucket.org:jordalgo/wordpress_site.git my-new-site
+git remote add upstream git@bitbucket.org:jordalgo/wordpress_site.git
 git remote set-url --push upstream no_push
 git remote add origin git@bitbucket.org:jordalgo/my-new-site.git
 git add -A
@@ -39,69 +26,51 @@ OR
 php composer.phar update
 ```
 
-
-####
-Install the gulp, js, and css dependencies.
+#### Download gulp, js, and css dependencies.
 
 ```bash
 npm install
 ```
 
-#### Step 2
+#### Set up a local Mysql DB and add the database name in site-config.json
 
-Set up a local Mysql DB and add the database name in package.json
+#### Add entry or un-comment entry in '/private/etc/hosts'
 
-#### Step 3
+#### Start MAMP
 
-```bash
-grunt
-```
-
-#### Step 4
-
-Change the root directory in MAMP
-
-#### Step 5
-
-Configure the DB using wordpress (wordpress/wp-admin/install.php)
-
-### Step 6
-
-Then add the repo to bitbucket or github and add the remote
-```bash
-git remote add origin git@bitbucket.org:jordalgo/{%= themename %}.git
-git add -A
-git commit -m "first commit"
-git push -u origin --all
-```
+#### Configure the DB using wordpress/wp-admin/install.php
 
 ## Development
 
-### Updating Wordpress Core and Plugins
-
-Update the version numbers in composer.json then run 'php composer.phar update'
+```bash
+gulp
+```
 
 ## Deploying to Production
 
 ```bash
-grunt --deploy=true
+gulp deploy --commit="commit message"
 ```
 
-or (if only FTP is available)
+## Updating Wordpress Core and Plugins
 
-```bash
-grunt --deploy=(repo, wordpress, php, library, top)
-```
-
-## Updating Local Development Hosts File
-
-```bash
-vim /private/etc/hosts
-```
-
-## Updraft Google Drive
-Save the settings and then attempt to connect to google. Dont use the test link.
+Update the version numbers in composer.json then run 'php composer.phar update'
 
 ## Extra Information
+
 Composer: https://getcomposer.org/
 Adding more wp-plugins: http://wpackagist.org/
+
+Developed by Jordan Rome
+'www.jordanrome.com'
+jordan@jordanrome.com
+
+Theme Based on the Bones (Responsive Edition) Wordpress Theme
+Developed by Eddie Machado
+'http://themble.com/bones'
+eddie@themble.com
+
+And the wordpress install based on
+David Winter's Article
+'http://davidwinter.me/articles/2012/04/09/install-and-manage-wordpress-with-git/'
+
