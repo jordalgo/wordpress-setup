@@ -1,5 +1,9 @@
 A Wordpress Website: by (Jordan Rome)[http://www.jordanrome.com]
 
+- update the .htaccess file
+- update the wp-config file in wp-content
+- add virtual host config in /etc/apache2/extra/httpd-vhosts.conf
+
 ## Setup
 
 #### Clone this Repo and Setup Remotes
@@ -8,7 +12,7 @@ A Wordpress Website: by (Jordan Rome)[http://www.jordanrome.com]
 git clone git@bitbucket.org:jordalgo/wordpress_site.git my-new-site
 git remote add upstream git@bitbucket.org:jordalgo/wordpress_site.git
 git remote set-url --push upstream no_push
-git remote add origin git@bitbucket.org:jordalgo/my-new-site.git
+git remote set-url origin git@bitbucket.org:jordalgo/my-new-site.git
 git add -A
 git commit -m "first commit"
 git push -u origin --all

@@ -1,9 +1,8 @@
 wordpress/
-vendor/
+/vendor/
 wp-content/plugins/
 wp-content/uploads/
 node_modules/
-wp-config.php
 wp-content/themes/default/library/build
 wp-content/themes/default/library/js/es5
 .DS_Store

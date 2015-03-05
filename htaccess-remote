@@ -9,6 +9,12 @@ RewriteRule ^wp-includes/js/tinymce/langs/.+\.php - [F,L]
 RewriteRule ^wp-includes/theme-compat/ - [F,L]
 </IfModule>
 
+# Env Vars for Wp-config
+SetEnv DB_NAME wp
+SetEnv DB_USER wp_user
+SetEnv DB_PASSWORD wp_pass
+SetEnv DB_HOST wp_host
+
 # Custom php.ini - this needs configuration for each site
 #<IfModule mod_suphp.c>
 #suPHP_ConfigPath /home/apjp
