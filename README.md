@@ -36,11 +36,31 @@ php composer.phar update
 npm install
 ```
 
-#### Set up a local Mysql DB and add the database name in site-config.json
+#### Set up a local Mysql DB and add an entry in '/etc/apache2/extra/httpd-vhosts.conf'
+
+Sample:
+```
+<VirtualHost *:80>
+    ServerName domain.com
+    ServerAlias www.domain.com
+    DocumentRoot "/Users/jordalgo/Sites/my-new-site"
+    ErrorLog "/private/var/log/apache2/apple.com-error_log"
+    CustomLog "/private/var/log/apache2/apple.com-access_log" common
+    ServerAdmin web@coolestguidesontheplanet.com
+    SetEnv DB_NAME db-name
+    SetEnv DB_USER root
+    SetEnv DB_PASSWORD db-pw
+    SetEnv DB_HOST 127.0.0.1
+</VirtualHost>
+```
 
 #### Add entry or un-comment entry in '/private/etc/hosts'
 
-#### Start MAMP
+#### Start MySQL and Apache
+
+```bash
+sudo apachectl start
+```
 
 #### Configure the DB using wordpress/wp-admin/install.php
 
