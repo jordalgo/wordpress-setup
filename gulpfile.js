@@ -103,15 +103,9 @@ gulp.task('git-push', ['git-commit'], function(done){
 });
 
 // Rsync
-gulp.task('rsync', function() {
-  gulp.src('./')
-    .pipe(plugins.rsync({
-      hostname: 'example.com',
-      destination: '/public_html',
-      progress: true,
-      exclude: ['node_modules/', '.git/', 'wp-content/uploads/']
-    }));
-});
+gulp.task('rsync', plugins.shell.task([
+  'rsync -avz --exclude-from "rsync-exclude-list.txt" ./ jordalgo@academyofcreativeeducation.org:html'
+]));
 
 gulp.task(
   'default',
@@ -131,10 +125,9 @@ gulp.task(
     'minify-css'
     , 'jshint'
     , 'uglify'
-    , 'rsync'
   ],
   function() {
-    gulp.start('git-push');
+    gulp.start('rsync');
   }
 );
 
