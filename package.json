@@ -1,5 +1,6 @@
 {
   "name": "wordpress_site",
+  "themePath": "wp-content/themes/default/",
   "localhostPort": 8000,
   "private": true,
   "repository": {
@@ -28,8 +29,7 @@
   "scripts": {
     "start": "npm install",
     "build": "gulp --deploy",
-    "dev": "gulp",
-    "test": "grunt test"
+    "dev": "gulp"
   },
   "author": "Wordpress Team with Custom theme by Jordan Rome",
   "license": "ISC"

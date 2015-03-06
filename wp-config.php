@@ -24,7 +24,7 @@ define('WP_SITEURL', $server . '/wordpress');
 define('WP_HOME', $server);
 define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content');
 define('WP_CONTENT_URL', $server . '/wp-content');
-define('WP_DEFAULT_THEME', '{%= themename %}');
+define('WP_DEFAULT_THEME', 'default');
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
@@ -71,8 +71,8 @@ define('NONCE_SALT',       '-V]u[@PT{D4Kk}9qoEQ{vj(`e5,xWPS*Xmr?oTB-,IT53!s?8uZU
  * You can have multiple installations in one database if you give each a unique
  * prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix  = 'wp_';
-//$table_prefix = 'dalgo_';
+//$table_prefix  = 'wp_';
+$table_prefix = 'dalgo_';
 
 /**
  * WordPress Localized Language, defaults to English.

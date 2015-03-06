@@ -1,9 +1,5 @@
 A Wordpress Website: by (Jordan Rome)[http://www.jordanrome.com]
 
-- update the .htaccess file
-- update the wp-config file in wp-content
-- add virtual host config in /etc/apache2/extra/httpd-vhosts.conf
-
 ## Setup
 
 #### Clone this Repo and Setup Remotes
@@ -63,6 +59,8 @@ sudo apachectl start
 ```
 
 #### Configure the DB using wordpress/wp-admin/install.php
+
+#### Edit htaccess-remote and change to .htaccess after first upload
 
 ## Development
 
