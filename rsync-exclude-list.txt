@@ -1,0 +1,6 @@
+wp-content/uploads/
+node_modules/
+.git/
+.htaccess
+vendor/
+

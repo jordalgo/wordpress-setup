@@ -1,0 +1,25 @@
+footer {
+  clear: both;
+  padding-top: @footer-padding-top-768up;
+  padding-bottom: 0px;
+  height: @footer-height-768up;
+  overflow: auto;
+  z-index: 100;
+
+  li {
+    float: left;
+    position: relative;
+    padding: 0px 18px 0px 13px;
+
+    &:after {
+      content: "/";
+      position: absolute;
+      top: 0px;
+      right: 0px;
+    }
+    
+    &#top-tab {
+      &:after { content: ""; }
+    }
+  }
+}

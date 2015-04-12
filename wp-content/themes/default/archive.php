@@ -3,29 +3,44 @@
 <!--Start of main -->
 <div class="main-container">
 
+	<div class="page-title">
+   	  <h2>News</h2>
+   	  <span class="border left-top"></span>
+   	  <span class="border left-bottom"></span>
+   	  <span class="border right-top"></span>
+   	  <span class="border right-bottom"></span>
+   	</div>
+
+   	<div class="sub-page-content">
+      <div class="sub-page-nav">
+        <?php /* get_sidebar(); */ ?>
+    	<?php if ( is_active_sidebar( 'news_nav' )) : ?><?php dynamic_sidebar( 'news_nav' ); ?><?php endif; ?>
+      </div>
+   	  <div class="content-col">
+
 	<?php if (is_category()) { ?>
 		<h1 class="archive_title">
-			<span><?php _e("", "jordalgo"); ?></span> <?php single_cat_title(); ?>
+			<span><?php _e("", "jordalgo"); ?></span> <span class="detail"><?php single_cat_title(); ?></span>
 		</h1>
 	<?php } elseif (is_tag()) { ?> 
 		<h1 class="archive_title">
-			<span><?php _e("Posts Tagged:", "jordalgo"); ?></span> <?php single_tag_title(); ?>
+			<span><?php _e("Posts Tagged :", "jordalgo"); ?></span> <span class="detail"><?php single_tag_title(); ?></span>
 		</h1>
 	<?php } elseif (is_author()) { ?>
 		<h1 class="archive_title">
-			<span><?php _e("Posts By:", "jordalgo"); ?></span> <?php get_the_author_meta('display_name'); ?>
+			<span><?php _e("Posts By :", "jordalgo"); ?></span> <span class="detail"><?php get_the_author_meta('display_name'); ?></span>
 		</h1>
 	<?php } elseif (is_day()) { ?>
 		<h1 class="archive_title">
-			<span><?php _e("Daily Archives:", "jordalgo"); ?></span> <?php the_time('l, F j, Y'); ?>
+			<span><?php _e("Daily Archives :", "jordalgo"); ?></span> <span class="detail"><?php the_time('l, F j, Y'); ?></span>
 		</h1>
 	<?php } elseif (is_month()) { ?>
 	    <h1 class="archive_title">
-	    	<span><?php _e("Monthly Archives:", "jordalgo"); ?>:</span> <?php the_time('F Y'); ?>
+	    	<span><?php _e("Monthly Archives :", "jordalgo"); ?>:</span> <span class="detail"><?php the_time('F Y'); ?></span>
 	    </h1>
 	<?php } elseif (is_year()) { ?>
 	    <h1 class="archive_title">
-	    	<span><?php _e("Yearly Archives:", "jordalgo"); ?>:</span> <?php the_time('Y'); ?>
+	    	<span><?php _e("Yearly Archives :", "jordalgo"); ?>:</span> <span class="detail"><?php the_time('Y'); ?></span>
 	    </h1>
 	<?php } ?>
 
@@ -38,10 +53,8 @@
 		
 			<h3 class="result-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
 
-	    <p>
-	    	<strong><?php echo the_time('Y-m-j'); ?></strong><br />
-	      <?php the_excerpt(); ?>
-			</p>
+		<div class="date"><?php echo the_time('F jS, Y'); ?></div>
+	    <?php the_excerpt(); ?>
 
 		</article>
 	
@@ -75,6 +88,11 @@
 		</article>
 	
 	<?php endif; ?>
+
+	</div>
+    <!-- end of .content-col -->
+    </div>
+	<!-- end of .sub-page-content -->
 
 </div>
 <!-- end of .main-container -->

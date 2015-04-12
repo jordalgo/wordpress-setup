@@ -83,7 +83,7 @@ class dalgo_walker extends Walker_Nav_Menu {
 		$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
 		$class_names = ' class="' . esc_attr( $class_names ) . '"';
 
-		$output .= $indent . '<li'. $class_names .'">';
+		$output .= $indent . '<li id="'. $item->attr_title .'-tab">';
 
 		$attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
 		$attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
@@ -116,16 +116,17 @@ function dalgo_main_nav() {
 }
 
 function dalgo_footer_links() { 
-	// display the wp3 menu if available
-  wp_nav_menu(
-  	array(
-  		'menu' => 'footer_links',
-  		'theme_location' => 'footer_links',
-      'container_id'    => 'foot-links',
-      'container_class' => '',
-  		'fallback_cb' => 'dalgo_footer_links_fallback'
-  	)
-	);
+  // display the wp3 menu if available
+  $walkerF = new dalgo_walker;
+
+  wp_nav_menu(array(
+    'menu' => 'footer_links',
+    'theme_location' => 'footer_links',
+    'container_id'    => 'foot-links',
+    'container_class' => '',
+    'walker' => $walkerF,
+    'fallback_cb' => 'dalgo_footer_links_fallback'
+  ));
 }
 
 function dalgo_social_media_links() { 

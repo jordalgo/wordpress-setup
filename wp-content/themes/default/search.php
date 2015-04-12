@@ -3,39 +3,27 @@
   <!--Start of main -->
 	<div class="main-container">
 
-    <h1>Search Results for: <?php echo esc_attr(get_search_query()); ?></h1>
+	<div class="search-content">
 
-    <?php get_search_form(); ?>
+    <h1 class="search-result-title">Search Results for: <span class="detail"><?php echo esc_attr(get_search_query()); ?></span></h1>
+
+	<div class="search-container">
+      <?php get_search_form(); ?>
+    </div>
 
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 						
-			<article
-				id="post-<?php the_ID(); ?>"
-				<?php post_class('search-result'); ?>
-				role="article"
-			>
+			<article id="post-<?php the_ID(); ?>" role="article" class="search-result">
 				
-				<header>
+				<h3 class="result-title">
+					<a href="<?php the_permalink() ?>"
+					  rel="bookmark"
+					  title="<?php the_title_attribute(); ?>"
+					><?php the_title(); ?></a>
+				</h3>
 
-					<h3 class="result-title">
-						<a
-							href="<?php the_permalink() ?>"
-							rel="bookmark"
-							title="<?php the_title_attribute(); ?>"
-						><?php the_title(); ?></a>
-					</h3>
-
-				</header>
-						
-				<section>
-					<a
-						href="<?php the_permalink() ?>"
-						rel="bookmark"
-						class="result-link"
-						title="<?php the_title_attribute(); ?>"
-					><?php the_permalink() ?></a>
-					<?php the_excerpt('<span class="read-more">Read more on "'.the_title('', '', false).'" &raquo;</span>'); ?>
-				</section>
+				<?php the_excerpt(); ?>
+				<a href="<?php the_permalink() ?>"><?php the_permalink() ?></a>
 
 			</article>
 						
@@ -70,6 +58,9 @@
 			</article>
 		
 		<?php endif; ?>
+	
+	</div>
+	<!-- end of search-content -->
 
 	</div>
   <!-- end of .main-container -->

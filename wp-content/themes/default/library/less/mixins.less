@@ -67,6 +67,33 @@ CLEARFIXIN'
 }
 
 /*********************
+INPUT BOX PLACEHOLDER
+*********************/
+
+.placeholder(@color: #000, @font-size: 1em, @text-transform: none) {
+  ::-webkit-input-placeholder {
+    color: @color;
+    font-size: @font-size;
+    text-transform: @text-transform;
+  }
+  :-moz-placeholder {
+    color: @color;
+    font-size: @font-size;
+    text-transform: @text-transform;
+  }
+  ::-moz-placeholder {
+    color: @color;
+    font-size: @font-size;
+    text-transform: @text-transform;
+  }
+  :-ms-input-placeholder {
+    color: @color;
+    font-size: @font-size;
+    text-transform: @text-transform;
+  }
+}
+
+/*********************
 BORDER RADIUS
 *********************/
 

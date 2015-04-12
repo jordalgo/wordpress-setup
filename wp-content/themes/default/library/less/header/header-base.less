@@ -1,6 +1,96 @@
-header {
+@header-spacing: 10px;
 
+header {
+  border-bottom: 1px solid @gray-30;
+  padding-bottom: @spacing-mobile-sections/2;
+  margin-bottom: @spacing-mobile-sections;
+  overflow: auto;
+
+
+  .logo {
+    margin-top: @header-spacing;
+    margin-bottom: @header-spacing;
+    height: 55px;
+    width: 80%;
+    float: left;
+
+    .logo-img {
+      float: left;
+      display: block;
+      margin-right: 6px;
+      background-image: url("@{imageLocation}/logo-small.png");
+      background-repeat: no-repeat;
+      width: 49px;
+      height: 57px;
+      text-indent: -9999px;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    h1 {
+      text-transform: uppercase;
+      font-weight: normal;
+      font-size: 1.2em;
+      color: @gray-70;
+      padding-top: 8px;
+      margin: 0px;
+
+      a {
+        color: @gray-70;
+        &:hover {
+          color: @gray-70;
+          background-color: transparent;
+        }
+      }
+
+      .highlight {
+        color: @primary-100;
+      }
+    }
+
+    .tag-line {
+      color: @gray-30;
+      font-size: 0.8em;
+      font-weight: normal;
+      display: block;
+      margin: 0;
+    }
+  } // .logo
+
+  .mobile-hamburger-menu {
+    width: 40px;
+    float: right;
+    margin-top: @header-spacing * 2 + 8px;
+
+    .line {
+      width: 100%;
+      height: 4px;
+      background-color: @gray-50;
+      margin-bottom: 6px;
+    }
+
+    &:hover,
+    &.active {
+      .line {
+        background-color: @primary-100;
+      }
+    }
+
+  } // .mobile-hamburger-menu
+
+  // navigation
   .access {
+    max-height: 0px;
+    transition: max-height @transition-time-nav ease-out;
+    overflow: hidden;
+    clear: both;
+
+    &.active {
+      max-height: 200px;
+      transition: max-height @transition-time-nav ease-in;
+    }
 
     /* Assistive text */
     .assistive-text {
@@ -19,7 +109,30 @@ header {
       left: 7.6%;
     }
 
-  }
+    li {
+      margin-bottom: 4px;
+      text-transform: lowercase;
+      font-size: 1.1em;
+      font-weight: normal;
+      display: block;
+
+      a { color: @gray-70; }
+
+      .sub-menu { display: none; }
+
+      &:hover {
+       
+        & > a {
+          background-color: transparent;
+          text-decoration: underline; 
+        }
+        
+      }
+
+      &:active { padding-top: 3px; }
+
+    } // li
+
+  } //.access
 
 }
-

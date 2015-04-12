@@ -14,13 +14,13 @@
   // Sidebars & Widgetizes Areas (register new widgets here)
   function dalgo_register_sidebars() {
     register_sidebar(array(
-      'id' => 'sample',
-      'name' => 'sample name',
+      'id' => 'news_nav',
+      'name' => 'News Page Navigation',
       'description' => '',
       'before_widget' => '',
       'after_widget' => '',
-      'before_title' => '',
-      'after_title' => '',
+      'before_title' => '<div class="widget-title">',
+      'after_title' => '</div>',
     ));   
   }
 
@@ -88,28 +88,27 @@
       '<form
         role="search"
         method="get"
-        id="searchform"
+        class="search-form"
         action="' . home_url( '/' ) . '"
       >
-        <div id="search-box">
-          <input
-            type="text"
-            value="' . get_search_query() . '"
-            name="s"
-            class="inputbox1"
-            id="search-input"
-            placeholder="Search"
-            onFocus="clearIt(this)"
-          />
-        </div>
-        <div id="search-submit">
+        <div class="search-submit">
           <input
             alt="Send"
             onClick="submit();"
             value=""
             type="button"
-            id="search-button"
+            class="search-button"
           >
+        </div>
+        <div class="search-box">
+          <input
+            type="text"
+            value="' . get_search_query() . '"
+            name="s"
+            class="search-input"
+            placeholder="Search"
+            onFocus="clearIt(this)"
+          />
         </div>
       </form>';
     

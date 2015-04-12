@@ -1,0 +1,56 @@
+header {
+  min-height: 108px;
+
+  .logo {
+    margin-top: 20px;
+    width: 25%;
+    h1 { padding-top: 8px; }
+
+    .logo-img {
+      margin-right: 10px;
+      background-image: url("@{imageLocation}/logo-med.png");
+      width: 60px;
+      height: 73px;
+    }
+  }
+
+  .access {
+    margin-right: 50px;
+    margin-top: 42px;
+
+    li {
+      padding: 0px 35px 0px 28px;
+
+      &#about-us-tab { width: 88px; }
+    } // li
+
+    .search-container {
+      height: 40px;
+      top: 36px;
+
+      &:hover {
+        .search-box {
+          max-width: 950px;
+        }
+      }
+
+
+      .search-submit {
+        padding: 8px 7px 0px 0px;
+
+        .search-button {
+          width: 20px;
+        }
+      }
+
+       .search-box {
+         .search-input {
+          width: 1050px;
+         }
+      }
+
+    }
+
+  } // access
+
+}

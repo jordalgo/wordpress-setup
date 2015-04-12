@@ -52,10 +52,21 @@
     <body <?php body_class(); ?>>
 
     <div class="wrapper">
-    
-      <h1 class="site-title"><?php bloginfo('name'); ?></h1>
          
       <header>
+
+        <div class="logo">
+          <a href="http://www.vaultnano.com" title="Vault Nano Home Page" class="logo-img">VaultNano Logo</a>
+          <!--<h1 class="site-title"><?php bloginfo('name'); ?></h1>-->
+          <h1 class="site-title"><a href="http://www.vaultnano.com" title="Vault Nano Home Page"><span class="highlight">Vault</span>Nano</a></h1>
+          <h2 class="tag-line"><?php bloginfo('description'); ?></h2>
+        </div>
+
+        <div class="mobile-hamburger-menu">
+          <div class="line top"></div>
+          <div class="line middle"></div>
+          <div class="line bottom"></div>
+        </div>
         
         <nav class="access" role="navigation">
             <h3 class="assistive-text">Main Menu</h3>
@@ -69,5 +80,10 @@
             <!--Start of wordpres main navigation -->
             <?php dalgo_main_nav(); ?>
             <!--End of wordpress main navigation -->
+            <div class="search-container">
+              <?php get_search_form(); ?>
+            </div>
         </nav>
+
+
       </header>
