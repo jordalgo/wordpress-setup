@@ -1,5 +1,7 @@
 A Wordpress Website: by (Jordan Rome)[http://www.jordanrome.com]
 
+- change the dalgo walker menu to be like ACE's
+
 ## Setup
 
 #### Clone this Repo and Setup Remotes
@@ -32,7 +34,9 @@ php composer.phar update
 npm install
 ```
 
-#### Set up a local Mysql DB and add an entry in '/etc/apache2/extra/httpd-vhosts.conf'
+#### Set up a local Mysql DB
+
+#### Add an entry in '/etc/apache2/extra/httpd-vhosts.conf'
 
 Sample:
 ```

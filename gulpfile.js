@@ -4,7 +4,7 @@ var gulp = require('gulp')
   , browserifyHandlebars = require('browserify-handlebars')
   , browserSync = require('browser-sync')
 
-  , siteConfig = require('./site-config.json')
+  , siteConfig = require('./package.json')
   , THEME_PATH = siteConfig.themePath
   , THEME_LIBRARY_PATH = THEME_PATH + 'library/'
   , baseDestURL = '/'
