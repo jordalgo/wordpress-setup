@@ -15,6 +15,12 @@ var gulp = require('gulp')
   , argv = require('yargs').argv
   ;
 
+// Error Handler
+function onError(err) {
+  plugins.util.log(err.message);
+  this.emit('end');
+}
+
 // Less And CSS tasks
 gulp.task('less', function() {
   return gulp.src([LESS_PATH + 'style.less', LESS_PATH + 'style-base.less'])
@@ -22,6 +28,7 @@ gulp.task('less', function() {
       generateSourceMap: true, // default true
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
+    .on('error', onError)
     .pipe(gulp.dest(BUILD_PATH))
     ;
 });
@@ -44,6 +51,7 @@ gulp.task('jshint', function() {
 gulp.task('e6to5', function () {
   return gulp.src(SCRIPT_PATH + 'modules/*.js')
     .pipe(plugins['6to5']())
+    .on('error', onError)
     .pipe(gulp.dest(SCRIPT_PATH + 'es5/'))
     ;
 });
@@ -59,6 +67,7 @@ gulp.task('browserify', ['e6to5'], function() {
         }
       }
     }))
+    .on('error', onError)
     .pipe(gulp.dest(BUILD_PATH))
     ;
 });
@@ -74,16 +83,12 @@ gulp.task('uglify', ['browserify'], function() {
 gulp.task('watch', function() {
   gulp.watch(SCRIPT_PATH + 'modules/*.js', ['jshint', 'browserify', browserSync.reload]);
   gulp.watch(LESS_PATH + '**/*.less', ['less', browserSync.reload]);
-  //gulp.watch(SCRIPT_PATH + 'templates/*.hbs', ['browserify', browserSync.reload]);
-  gulp.watch(THEME_PATH + '*.php', [browserSync.reload]);
-  gulp.watch('./wp-content/wp-config.php', ['db-replace-local', browserSync.reload]);
+  gulp.watch(THEME_PATH + '*.php', browserSync.reload);
 });
 
 gulp.task('browser-sync', function () {
    browserSync({
-      server: {
-         baseDir: './'
-      }
+      proxy: "http://www.vaultnano.com"
    });
 });
 
@@ -104,7 +109,7 @@ gulp.task('git-push', ['git-commit'], function(done){
 
 // Rsync
 gulp.task('rsync', plugins.shell.task([
-  'rsync -avz --exclude-from "rsync-exclude-list.txt" ./ jordalgo@academyofcreativeeducation.org:html'
+  'rsync -e "ssh -p 2222" -avz --exclude-from "rsync-exclude-list.txt" ./ ab69358@108.167.183.93:public_html'
 ]));
 
 gulp.task(
