@@ -54,6 +54,8 @@ Sample:
 </VirtualHost>
 ```
 
+#### Set up db locally
+
 #### Add entry or un-comment entry in '/private/etc/hosts'
 
 #### Start MySQL and Apache
