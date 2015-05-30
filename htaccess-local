@@ -9,4 +9,10 @@ RewriteRule ^wp-includes/js/tinymce/langs/.+\.php - [F,L]
 RewriteRule ^wp-includes/theme-compat/ - [F,L]
 </IfModule>
 
-#Env vars get set in /etc/apache2/extra/httpd-vhosts.conf
+# Env Vars for Wp-config
+# You can also set them in /etc/apache2/extra/httpd-vhosts.conf
+SetEnv DB_NAME wp
+SetEnv DB_USER wp_user
+SetEnv DB_PASSWORD wp_pass
+SetEnv DB_HOST wp_host
+

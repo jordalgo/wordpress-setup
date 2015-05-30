@@ -1,5 +1,4 @@
 wordpress/
-/vendor/
 wp-content/plugins/
 wp-content/uploads/
 node_modules/
@@ -8,3 +7,4 @@ wp-content/themes/default/library/js/es5
 .DS_Store
 **/.DS_Store
 .htaccess
+vendor/

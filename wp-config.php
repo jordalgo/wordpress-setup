@@ -26,7 +26,12 @@ define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content');
 define('WP_CONTENT_URL', $server . '/wp-content');
 define('WP_DEFAULT_THEME', 'default');
 
-// ** MySQL settings - You can get this info from your web host ** //
+/**
+ * MySQL Settings
+ * You can set these in multiple places but I usually drop them into my .htaccess file
+ * so they can be different depending on the server.
+ */
+
 /** The name of the database for WordPress */
 define('DB_NAME', getenv('DB_NAME'));
 
@@ -54,14 +59,14 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         ' 2)^+lB.4`>e52<b6z=vWn~QAk|fj|KdqueiULvB~o%5]>-{GV3hg4_K0-a lcov');
-define('SECURE_AUTH_KEY',  'Ck3@)xQH~2*O8:AAp@;f[MP.km$,uBxuRO04*KmNRQxC(?yeg^gK^P;h `rnb!>;');
-define('LOGGED_IN_KEY',    'K-B/-+?P6Pd+c-8b:E|(RT8ecNE_)%C= n%ajx+wi;g$K7KMjxk( B(tIx;jZ|`=');
-define('NONCE_KEY',        '9|)<5F+ZPYz^qXqAx5__FC_;q][`)Wt!|F!|iTR+tx~~f B-BSz$Cw`a)6<_(RDc');
-define('AUTH_SALT',        'vZqU#,4%@RYsZ[QBV2Thp?/_^U(qV`haTr$FB2a^kHL~#gpv[FN?vK?pCM$1-+J!');
-define('SECURE_AUTH_SALT', 'C+asMfg41SS}>UZ-g6)9y/j?8`Mw(Ug;b.J:Z;-D%j5+7bz+9;n8_OQ<d9Sr1mTC');
-define('LOGGED_IN_SALT',   'RVeC_XY-j6g.^Xx7jrCCt~80t5A*dN{??SFfWwZS6E-!qe<Ak1|la|.3s(|{1+[O');
-define('NONCE_SALT',       '-V]u[@PT{D4Kk}9qoEQ{vj(`e5,xWPS*Xmr?oTB-,IT53!s?8uZU@-b Nn7v4ve#');
+define('AUTH_KEY',         '');
+define('SECURE_AUTH_KEY',  '');
+define('LOGGED_IN_KEY',    '');
+define('NONCE_KEY',        '');
+define('AUTH_SALT',        '');
+define('SECURE_AUTH_SALT', '');
+define('LOGGED_IN_SALT',   '');
+define('NONCE_SALT',       '');
 
 /**#@-*/
 
@@ -70,9 +75,9 @@ define('NONCE_SALT',       '-V]u[@PT{D4Kk}9qoEQ{vj(`e5,xWPS*Xmr?oTB-,IT53!s?8uZU
  *
  * You can have multiple installations in one database if you give each a unique
  * prefix. Only numbers, letters, and underscores please!
+ * For security reasons, it's a good idea not to make this 'wordpress' or 'wp'.
  */
-//$table_prefix  = 'wp_';
-$table_prefix = 'dalgo_';
+$table_prefix = 'erucsbo2015_';
 
 /**
  * WordPress Localized Language, defaults to English.

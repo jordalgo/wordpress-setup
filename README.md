@@ -1,6 +1,4 @@
-A Wordpress Website: by (Jordan Rome)[http://www.jordanrome.com]
-
-- change the dalgo walker menu to be like ACE's
+A Wordpress Website
 
 ## Setup
 
@@ -37,6 +35,10 @@ npm install
 #### Set up a local Mysql DB
 
 #### Add an entry in '/etc/apache2/extra/httpd-vhosts.conf'
+
+#### Generate Wordpress Keys and Salts for wp-config.php
+
+You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
 
 Sample:
 ```
