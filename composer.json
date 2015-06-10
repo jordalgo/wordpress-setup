@@ -7,7 +7,7 @@
   ],
   "require": {
     "php": ">=5.4",
-    "johnpbloch/wordpress": "4.2",
+    "johnpbloch/wordpress": "4.2.*",
     "wpackagist-plugin/w3-total-cache":">=0.9.4",
     "wpackagist-plugin/updraftplus":">=1.9.51",
     "wpackagist-plugin/all-in-one-wp-security-and-firewall":">=v3.9.0"

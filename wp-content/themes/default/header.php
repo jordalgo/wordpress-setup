@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
     <title>
-        <?php bloginfo('name'); ?> | <?php is_home() ? bloginfo('description') : wp_title(''); ?>
+        <?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title(''); ?>
     </title>
     
     <!-- mobile optimized -->
