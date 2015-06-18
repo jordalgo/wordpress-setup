@@ -104,3 +104,5 @@ And the wordpress install based on
 David Winter's Article
 'http://davidwinter.me/articles/2012/04/09/install-and-manage-wordpress-with-git/'
 
+Setting up Apache, MySQL and PHP on a local machine
+http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/
