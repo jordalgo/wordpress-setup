@@ -1,3 +1,9 @@
+# Env Vars for Wp-config
+SetEnv DB_NAME wp
+SetEnv DB_USER wp_user
+SetEnv DB_PASSWORD wp_pass
+SetEnv DB_HOST wp_host
+
 # Block the include-only files.
 <IfModule mod_rewrite.c>
 RewriteEngine On
@@ -8,12 +14,6 @@ RewriteRule ^wp-includes/[^/]+\.php$ - [F,L]
 RewriteRule ^wp-includes/js/tinymce/langs/.+\.php - [F,L]
 RewriteRule ^wp-includes/theme-compat/ - [F,L]
 </IfModule>
-
-# Env Vars for Wp-config
-SetEnv DB_NAME wp
-SetEnv DB_USER wp_user
-SetEnv DB_PASSWORD wp_pass
-SetEnv DB_HOST wp_host
 
 # Custom php.ini - this needs configuration for each site
 #<IfModule mod_suphp.c>
@@ -154,7 +154,7 @@ Redirectmatch 403 Table\/Latest\/index\.
 #AIOWPS_ENABLE_BRUTE_FORCE_PREVENTION_START (may need to reset this http cookie per site)
 RewriteEngine On
 RewriteCond %{REQUEST_URI} (wp-admin|wp-login)
-RewriteCond %{HTTP_COOKIE} !roloperlow= [NC]
+RewriteCond %{HTTP_COOKIE} !secretlogin= [NC]
 RewriteCond %{HTTP_COOKIE} !aiowps_cookie_test_5fuhy5c3fa= [NC]
 RewriteRule .* http://127.0.0.1 [L]
 #AIOWPS_ENABLE_BRUTE_FORCE_PREVENTION_END
