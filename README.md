@@ -12,18 +12,14 @@ This setup assumes that you are familiar the following:
 
 ## Setup
 
-[Here are instructions](http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/) on setting up Apache, MySQL and PHP on a local machine and of course the [instructions for installing wordpress](https://codex.wordpress.org/Installing_WordPress)
+!Important: Make sure you read the following
+*[Setting up Apache, MySQL, and PHP locally](http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/)
+*[Installing wordpress](https://codex.wordpress.org/Installing_WordPress)
 
 #### Clone this Repo and Setup Remotes
 
 ```bash
-git clone git@bitbucket.org:jordalgo/wordpress_site.git my-new-site
-git remote add upstream git@bitbucket.org:jordalgo/wordpress_site.git
-git remote set-url --push upstream no_push
-git remote set-url origin git@bitbucket.org:jordalgo/my-new-site.git
-git add -A
-git commit -m "first commit"
-git push -u origin --all
+git clone https://github.com/jordalgo/wordpress-setup.git my-new-site
 ```
 
 #### Download Wordpress and Plugins
@@ -46,31 +42,32 @@ npm install
 
 #### Set up a local Mysql DB
 
+I usually use Sequel Pro for this but the CL is probably just as easy.
+
 #### Add an entry in '/etc/apache2/extra/httpd-vhosts.conf'
 
-#### Generate Wordpress Keys and Salts for wp-config.php
-
-You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
-
-Sample:
+Example:
 ```
 <VirtualHost *:80>
     ServerName domain.com
     ServerAlias www.domain.com
-    DocumentRoot "/Users/jordalgo/Sites/my-new-site"
+    DocumentRoot "/Users/me/Sites/my-new-site"
     ErrorLog "/private/var/log/apache2/apple.com-error_log"
     CustomLog "/private/var/log/apache2/apple.com-access_log" common
     ServerAdmin web@coolestguidesontheplanet.com
-    SetEnv DB_NAME db-name
-    SetEnv DB_USER root
-    SetEnv DB_PASSWORD db-pw
-    SetEnv DB_HOST 127.0.0.1
 </VirtualHost>
 ```
 
-#### Set up db locally
+#### Generate Wordpress Keys and Salts for wp-config.php
+
+You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
+And then add them to the wp-config.php in the root directory.
 
 #### Add entry or un-comment entry in '/private/etc/hosts'
+
+```bash
+#127.0.0.1 www.domain.com
+```
 
 #### Start MySQL and Apache
 
@@ -78,9 +75,19 @@ Sample:
 sudo apachectl start
 ```
 
-#### Configure the DB using wordpress/wp-admin/install.php
+#### Copy htaccess-local (for local development)
 
-#### Edit htaccess-remote and change to .htaccess after first upload
+```bash
+cp htaccess-local .htacces
+```
+
+You'll have to also run this on your server but use 'htaccess-remote'
+and make sure not to add it to your git repo as this will contain sensitive
+information about your database and server configuration.
+
+#### Configure the DB
+
+In your web browser go to 'www.domain.com/wordpress/wp-admin/install.php'.
 
 ## Development
 
@@ -96,11 +103,17 @@ gulp deploy --commit="commit message"
 
 ## Updating Wordpress Core and Plugins
 
-Update the version numbers in composer.json then run 'php composer.phar update'
+```bash
+php composer.phar update
+```
+
+You can add new plugins and update particular version of wordpress or plugins
+by editing the 'composer.json' file.
 
 ## Todos
 * Explore using Timber/Tig
 * Add SEO Plugin
+* Add Babel
 
 ## Extra Information
 
