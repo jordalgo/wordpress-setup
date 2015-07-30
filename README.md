@@ -1,6 +1,6 @@
 A Wordpress Website
 
-## Setup
+## Requirements
 
 This setup assumes that you are familiar the following:
 * [Git](https://git-scm.com/)
@@ -10,7 +10,9 @@ This setup assumes that you are familiar the following:
 * [Gulp](http://gulpjs.com/)
 * [Less](http://lesscss.org/)
 
-[Here are instructions](http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/) on setting up Apache, MySQL and PHP on a local machine
+## Setup
+
+[Here are instructions](http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/) on setting up Apache, MySQL and PHP on a local machine and of course the [instructions for installing wordpress](https://codex.wordpress.org/Installing_WordPress)
 
 #### Clone this Repo and Setup Remotes
 

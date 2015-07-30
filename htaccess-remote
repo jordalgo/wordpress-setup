@@ -165,7 +165,7 @@ RewriteEngine on
 RewriteCond %{HTTP_REFERER} !^$
 RewriteCond %{REQUEST_FILENAME} -f
 RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g?|png)$ [NC]
-RewriteCond %{HTTP_REFERER} !^http(s)?://(.*)?\.?{%= siteaddress %}\.com [NC]
+RewriteCond %{HTTP_REFERER} !^http(s)?://(.*)?\.?SITEADDRESS\.com [NC]
 RewriteRule \.(gif|jpe?g?|png)$ - [F,NC,L]
 </IfModule>
 #AIOWPS_PREVENT_IMAGE_HOTLINKS_END
@@ -174,16 +174,17 @@ RewriteRule \.(gif|jpe?g?|png)$ - [F,NC,L]
 <IfModule mod_rewrite.c>
 RewriteCond %{REQUEST_METHOD} POST
 RewriteCond %{REQUEST_URI} ^(.*)?wp-comments-post\.php(.*)$
-RewriteCond %{HTTP_REFERER} !^http(s)?://(.*)?\.{%= siteaddress %}\.com [NC,OR]
+RewriteCond %{HTTP_REFERER} !^http(s)?://(.*)?\.SITEADDRESS\.com [NC,OR]
 RewriteCond %{HTTP_USER_AGENT} ^$
 RewriteRule .* http://127.0.0.1 [L]
 </IfModule>
 #AIOWPS_BLOCK_SPAMBOTS_END
 
 #AIOWPS_LOGIN_WHITELIST_START
+# Uncomment if you only want people to edit from certain IPs
 #<FilesMatch "^(wp-login\.php)">
 #Order Allow,Deny
-#Allow from {%= siteaddress %}
+#Allow from SITEADDRESS
 #Allow from 192.254.186.151
 #Allow from 67.86.250.42
 #</FilesMatch>
