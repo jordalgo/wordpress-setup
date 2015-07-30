@@ -2,6 +2,16 @@ A Wordpress Website
 
 ## Setup
 
+This setup assumes that you are familiar the following:
+* [Git](https://git-scm.com/)
+* [Composer](https://getcomposer.org/)
+* [Wpackagist](http://wpackagist.org/)
+* [NPM](https://www.npmjs.com/)
+* [Gulp](http://gulpjs.com/)
+* [Less](http://lesscss.org/)
+
+[Here are instructions](http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/) on setting up Apache, MySQL and PHP on a local machine
+
 #### Clone this Repo and Setup Remotes
 
 ```bash
@@ -92,8 +102,6 @@ Update the version numbers in composer.json then run 'php composer.phar update'
 
 ## Extra Information
 
-Composer: https://getcomposer.org/
-Adding more wp-plugins: http://wpackagist.org/
 
 Developed by Jordan Rome
 'www.jordanrome.com'
@@ -108,5 +116,3 @@ And the wordpress install based on
 David Winter's Article
 'http://davidwinter.me/articles/2012/04/09/install-and-manage-wordpress-with-git/'
 
-Setting up Apache, MySQL and PHP on a local machine
-http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/
