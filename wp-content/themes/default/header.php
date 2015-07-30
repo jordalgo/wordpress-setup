@@ -51,7 +51,7 @@
             >skip to content</a>
           </div>
           <!--Start of main navigation -->
-          <?php dalgo_main_nav(); ?>
+          <?php custom_main_nav(); ?>
           <!--End of main navigation -->
           <div class="search-container">
             <!--Start of search form -->

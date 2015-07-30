@@ -64,8 +64,6 @@ function custom_theme_support() {
 add_action('after_setup_theme','custom_theme_support');  
 // adding sidebars to Wordpress (these are created in functions.php)
 add_action( 'widgets_init', 'custom_register_sidebars' );
-// adding the custom search form (created in functions.php)
-add_filter( 'get_search_form', 'custom_wpsearch' );
 
 class custom_walker extends Walker_Nav_Menu {
 

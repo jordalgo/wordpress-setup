@@ -1,7 +1,7 @@
 
     <!--Start of footer-->
     <footer>
-      <?php dalgo_footer_links(); ?>
+      <?php custom_footer_links(); ?>
     </footer>
     <!-- end of footer -->
          
