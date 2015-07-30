@@ -86,6 +86,10 @@ gulp deploy --commit="commit message"
 
 Update the version numbers in composer.json then run 'php composer.phar update'
 
+## Todos
+* Explore using Timber/Tig
+* Add SEO Plugin
+
 ## Extra Information
 
 Composer: https://getcomposer.org/

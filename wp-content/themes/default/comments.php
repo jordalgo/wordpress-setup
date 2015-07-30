@@ -1,6 +1,6 @@
 <?php
 /*
-The comments page for Jordalgo
+The comments page for Default
 */
 
 // Do not delete these lines

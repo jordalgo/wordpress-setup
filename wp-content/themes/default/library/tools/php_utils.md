@@ -35,6 +35,23 @@ Sample Wordpress PHP Utilities
     if ( !$nextGenGallery ) { removeNextGenScripts(); } 
   ?>
 
+#Show child pages for the current page (add to page.php)
+<?php 
+  // determine parent of current page
+  if ($post->post_parent) {
+    $ancestors = get_post_ancestors($post->ID);
+    $parent = $ancestors[count($ancestors) - 1];
+    $section_title = get_the_title( $post->post_parent );
+    $section_parent = false;
+  } else {
+    $parent = $post->ID;
+    $section_title = get_the_title( $post->ID );
+    $section_parent = true;
+  }
+
+  $children = wp_list_pages("title_li=&child_of=" . $parent . "&echo=0");
+?>
+
 #Get posts per category
   <?php 
     $posts = get_posts('category=5&numberposts=10'); 

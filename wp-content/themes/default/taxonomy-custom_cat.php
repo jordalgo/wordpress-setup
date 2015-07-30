@@ -15,69 +15,69 @@ taxonomy-shoes.php
 
 <?php get_header(); ?>
 
-  <!--Start of main -->
-	<div class="main-container">
+<!--Start of main -->
+<div class="main-container">
 
-    <h1 class="archive_title h2"><span><?php _e("Posts Categorized:", "jordalgo"); ?></span> <?php single_cat_title(); ?></h1>
-					
-		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		
-		<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
-			
-			<header>
+  <h1 class="archive_title h2"><span><?php _e("Posts Categorized:", "jordalgo"); ?></span> <?php single_cat_title(); ?></h1>
 				
-				<h3 class="h2"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
-				
-				<p class="meta"><?php _e("Posted", "jordalgo"); ?> <time datetime="<?php echo the_time('Y-m-j'); ?>" pubdate><?php the_time('F jS, Y'); ?></time> <?php _e("by", "jordalgo"); ?> <?php the_author_posts_link(); ?> <span class="amp">&</span> <?php _e("filed under", "jordalgo"); ?> <?php echo get_the_term_list( get_the_ID(), 'custom_cat', "" ) ?>.</p>
-			
-			</header> <!-- end article header -->
-		
-			<section class="post-content">
-			
-				<?php the_post_thumbnail( 'bones-thumb-300' ); ?>
-			
-				<?php the_excerpt('<span class="read-more">Read More &raquo;</span>'); ?>
-		
-			</section> <!-- end article section -->
-			
-			<footer>
-				
-			</footer> <!-- end article footer -->
-		
-		</article> <!-- end article -->
-		
-		<?php endwhile; ?>	
-		
-		<?php if (function_exists('page_navi')) { // if expirimental feature is active ?>
-			
-			<?php page_navi(); // use the page navi function ?>
+	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 	
-		<?php } else { // if it is disabled, display regular wp prev & next links ?>
-			<nav class="wp-prev-next">
-				<ul class="clearfix">
-					<li class="prev-link"><?php next_posts_link(_e('&laquo; Older Entries', "jordalgo")) ?></li>
-					<li class="next-link"><?php previous_posts_link(_e('Newer Entries &raquo;', "jordalgo")) ?></li>
-				</ul>
-			</nav>
-		<?php } ?>
-					
+	<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
 		
-		<?php else : ?>
+		<header>
+			
+			<h3 class="h2"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
+			
+			<p class="meta"><?php _e("Posted", "jordalgo"); ?> <time datetime="<?php echo the_time('Y-m-j'); ?>" pubdate><?php the_time('F jS, Y'); ?></time> <?php _e("by", "jordalgo"); ?> <?php the_author_posts_link(); ?> <span class="amp">&</span> <?php _e("filed under", "jordalgo"); ?> <?php echo get_the_term_list( get_the_ID(), 'custom_cat', "" ) ?>.</p>
 		
-		<article id="post-not-found">
-		    <header>
-		    	<h1>No Posts Yet</h1>
-		    </header>
-		    <section class="post-content">
-		    	<p>Sorry, but the requested resource was not found on this site.</p>
-		    </section>
-		    <footer>
-		    </footer>
-		</article>
+		</header> <!-- end article header -->
+	
+		<section class="post-content">
 		
-		<?php endif; ?>
+			<?php the_post_thumbnail( 'bones-thumb-300' ); ?>
+		
+			<?php the_excerpt('<span class="read-more">Read More &raquo;</span>'); ?>
+	
+		</section> <!-- end article section -->
+		
+		<footer>
+			
+		</footer> <!-- end article footer -->
+	
+	</article> <!-- end article -->
+	
+	<?php endwhile; ?>	
+	
+	<?php if (function_exists('page_navi')) { // if expirimental feature is active ?>
+		
+		<?php page_navi(); // use the page navi function ?>
 
-	</div>
-  <!-- end of .main-container -->
+	<?php } else { // if it is disabled, display regular wp prev & next links ?>
+		<nav class="wp-prev-next">
+			<ul class="clearfix">
+				<li class="prev-link"><?php next_posts_link(_e('&laquo; Older Entries', "jordalgo")) ?></li>
+				<li class="next-link"><?php previous_posts_link(_e('Newer Entries &raquo;', "jordalgo")) ?></li>
+			</ul>
+		</nav>
+	<?php } ?>
+				
+	
+	<?php else : ?>
+	
+	<article id="post-not-found">
+	    <header>
+	    	<h1>No Posts Yet</h1>
+	    </header>
+	    <section class="post-content">
+	    	<p>Sorry, but the requested resource was not found on this site.</p>
+	    </section>
+	    <footer>
+	    </footer>
+	</article>
+	
+	<?php endif; ?>
+
+</div>
+<!-- end of .main-container -->
 							
 <?php get_footer(); ?>

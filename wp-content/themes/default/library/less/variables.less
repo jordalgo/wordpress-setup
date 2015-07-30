@@ -1,26 +1,45 @@
-//Integers
-@spacing-mobile-sections: 15px;
-@max-content-width: 1200px;
+/*********************
+Colors
+*********************/
+
+/**
+ * These are the hue values for use in the vars below
+ * If you want to use one-offs of shared colors,
+ * it's best to use less's color functions
+ * to adjust the saturation, lightness, and alpha.
+ */
+@blue: 208; 
+@burgundy: 340;
+
+@color-primary: hsla(@blue, 65%, 39%, 1);
+@color-secondary: hsla(@burgundy, 65%, 39%, 0.8);
 
 
-//Image Ratios
+/*********************
+Fonts
+*********************/
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700);
+
+.sans-serif { 
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.serif { 
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+
+/*********************
+Strings
+*********************/
+
+@imageLocation: ~"../images/theme/";
+
+
+/*********************
+Integers
+*********************/
+
 @img-main-logo-ratio: (84%/407%*100%);
 
-//Transition Duration
-@transition-time-nav: 0.25s;
-@transition-time-search-box-out: 0.3s;
-@transition-time-search-box-in: 0.25s;
-
-//Footer (for sticky footer)
-@footer-border-width: 1px;
-@footer-padding-top-base: 10px;
-@footer-height-base: 92px;
-@footer-padding-top-768up: 12px;
-@footer-height-768up: 30px;
-@footer-padding-top-1030up: 14px;
-@footer-height-1030up: 38px;
-@footer-padding-top-1400up: 20px;
-@footer-height-1400up: 50px;
-
-//Images
-@img-bg-body: url("@{imageLocation}/bg-pattern-1.jpg");
