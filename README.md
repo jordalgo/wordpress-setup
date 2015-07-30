@@ -1,4 +1,6 @@
-A Wordpress Website
+#A Wordpress Website and Dev Setup
+
+This is primarily for Mac users at the moment but I'm sure it can also be used on a Windows or Linux machine with some adjustments.
 
 ## Requirements
 
@@ -9,12 +11,15 @@ This setup assumes that you are familiar the following:
 * [NPM](https://www.npmjs.com/)
 * [Gulp](http://gulpjs.com/)
 * [Less](http://lesscss.org/)
+* [rsync](http://linux.die.net/man/1/rsync)
+
+I'm also assuming you have ssh access to the server you will be deploying this website to. However, I'm sure there are gulp plugins for using FTP instead.
 
 ## Setup
 
-!Important: Make sure you read the following
-*[Setting up Apache, MySQL, and PHP locally](http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/)
-*[Installing wordpress](https://codex.wordpress.org/Installing_WordPress)
+!Important! Make sure you read the following:
+* [Setting up Apache, MySQL, and PHP locally](http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/)
+* [Installing wordpress](https://codex.wordpress.org/Installing_WordPress)
 
 #### Clone this Repo and Setup Remotes
 
@@ -96,6 +101,8 @@ gulp
 ```
 
 ## Deploying to Production
+
+Make sure to edit your gulpfile's rsync task so that it pushes to the correct server.
 
 ```bash
 gulp deploy --commit="commit message"
