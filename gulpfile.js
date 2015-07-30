@@ -88,7 +88,7 @@ gulp.task('watch', function() {
 
 gulp.task('browser-sync', function () {
    browserSync({
-      proxy: "http://www.vaultnano.com"
+      proxy: "www.testsite.com"
    });
 });
 
@@ -109,7 +109,7 @@ gulp.task('git-push', ['git-commit'], function(done){
 
 // Rsync
 gulp.task('rsync', plugins.shell.task([
-  'rsync -e "ssh -p 2222" -avz --exclude-from "rsync-exclude-list.txt" ./ ab69358@108.167.183.93:public_html'
+  'rsync -e "ssh -p 2222" -avz --exclude-from "rsync-exclude-list.txt" ./ USER@SERVER-IP:FOLDER'
 ]));
 
 gulp.task(
