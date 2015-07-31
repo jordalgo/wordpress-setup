@@ -7,10 +7,11 @@
     "type": "git"
   },
   "devDependencies": {
+    "babel": "^5.8.19",
     "browser-sync": "~1.8.2",
     "browserify-handlebars": "~1.0.0",
     "gulp": "~3.8.10",
-    "gulp-6to5": "~2.0.0",
+    "gulp-babel": "^5.2.0",
     "gulp-browserify": "~0.5.0",
     "gulp-define-module": "~0.1.1",
     "gulp-handlebars": "~3.0.1",

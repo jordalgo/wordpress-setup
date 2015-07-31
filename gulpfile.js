@@ -48,15 +48,15 @@ gulp.task('jshint', function() {
     .pipe(plugins.jshint.reporter('fail'));
 });
 
-gulp.task('e6to5', function () {
+gulp.task('babel', function () {
   return gulp.src(SCRIPT_PATH + 'modules/*.js')
-    .pipe(plugins['6to5']())
+    .pipe(plugins.babel())
     .on('error', onError)
     .pipe(gulp.dest(SCRIPT_PATH + 'es5/'))
     ;
 });
 
-gulp.task('browserify', ['e6to5'], function() {
+gulp.task('browserify', ['babel'], function() {
   return gulp.src(SCRIPT_PATH + 'es5/main.js')
     .pipe(plugins.browserify({
       transform: [browserifyHandlebars],
