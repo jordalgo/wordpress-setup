@@ -1,19 +1,37 @@
-var gulp = require('gulp')
-  , path = require('path')
-  , plugins = require('gulp-load-plugins')()
-  , browserifyHandlebars = require('browserify-handlebars')
-  , browserSync = require('browser-sync')
+var gulp = require('gulp');
+var path = require('path');
+var plugins = require('gulp-load-plugins')();
+var browserifyHandlebars = require('browserify-handlebars');
+var browserSync = require('browser-sync');
+var argv = require('yargs').argv;
 
-  , siteConfig = require('./package.json')
-  , THEME_PATH = siteConfig.themePath
-  , THEME_LIBRARY_PATH = THEME_PATH + 'library/'
-  , baseDestURL = '/'
-  , LESS_PATH = THEME_LIBRARY_PATH + 'less/'
-  , SCRIPT_PATH = THEME_LIBRARY_PATH + 'js/'
-  , BUILD_PATH = THEME_LIBRARY_PATH + 'build/'
+var buildConfig = require('./build-config.json');
+var THEME_PATH = buildConfig.themePath;
+var THEME_LIBRARY_PATH = THEME_PATH + 'library/';
+var baseDestURL = '/';
+var LESS_PATH = buildConfig.themePath + buildConfig.lessPath;
+var SCRIPT_PATH = buildConfig.themePath + buildConfig.scriptPath;
+var BUILD_PATH = buildConfig.themePath + buildConfig.buildPath;
 
-  , argv = require('yargs').argv
-  ;
+var lessFiles = buildConfig.style.map(function(file) {
+  return LESS_PATH + file + '.less';
+});
+var cssFiles = buildConfig.style.map(function(file) {
+  return BUILD_PATH + file + '.css';
+});
+var scriptFiles = buildConfig.scripts.map(function(file) {
+  return SCRIPT_PATH + file;
+});
+var browserifyFiles = buildConfig.browserify.files.map(function(file) {
+  if (buildConfig.es6) {
+    return SCRIPT_PATH + 'es5/' + file;
+  } else {
+    return SCRIPT_PATH + file;
+  }
+});
+var uglifyFiles = buildConfig.browserify.files.map(function(file) {
+  return BUILD_PATH + file;
+});
 
 // Error Handler
 function onError(err) {
@@ -23,7 +41,7 @@ function onError(err) {
 
 // Less And CSS tasks
 gulp.task('less', function() {
-  return gulp.src([LESS_PATH + 'style.less', LESS_PATH + 'style-base.less'])
+  return gulp.src(lessFiles)
     .pipe(plugins.less({
       generateSourceMap: true, // default true
       paths: [ path.join(__dirname, 'less', 'includes') ]
@@ -34,38 +52,33 @@ gulp.task('less', function() {
 });
 
 gulp.task('minify-css', ['less'], function() {
-  return gulp.src([BUILD_PATH + 'style.css', BUILD_PATH + 'style-base.css'])
-    .pipe(plugins.minifyCss())
+  return gulp.src(cssFiles)
+    .pipe(plugins.minifyCss({ processImport: false }))
     .pipe(gulp.dest(BUILD_PATH))
     ;
 });
 
 // JS tasks
 gulp.task('jshint', function() {
-  return gulp.src(SCRIPT_PATH + 'modules/*.js')
+  return gulp.src(scriptFiles)
     .pipe(plugins.jshint('.jshintrc'))
     .pipe(plugins.jshint.reporter('jshint-stylish'))
     .pipe(plugins.jshint.reporter('fail'));
 });
 
 gulp.task('babel', function () {
-  return gulp.src(SCRIPT_PATH + 'modules/*.js')
+  return gulp.src(scriptFiles)
     .pipe(plugins.babel())
     .on('error', onError)
     .pipe(gulp.dest(SCRIPT_PATH + 'es5/'))
     ;
 });
 
-gulp.task('browserify', ['babel'], function() {
-  return gulp.src(SCRIPT_PATH + 'es5/main.js')
+gulp.task('browserify', buildConfig.es6 ? ['babel'] : [], function() {
+  return gulp.src(browserifyFiles)
     .pipe(plugins.browserify({
       transform: [browserifyHandlebars],
-      shim: {
-        jQuery: {
-          path: SCRIPT_PATH + 'vendor/jquery.min.js',
-          exports: '$'
-        }
-      }
+      shim: buildConfig.browserify.shim
     }))
     .on('error', onError)
     .pipe(gulp.dest(BUILD_PATH))
@@ -73,7 +86,7 @@ gulp.task('browserify', ['babel'], function() {
 });
 
 gulp.task('uglify', ['browserify'], function() {
-  return gulp.src(THEME_LIBRARY_PATH + 'build/main.js')
+  return gulp.src(uglifyFiles)
     .pipe(plugins.uglify())
     .pipe(gulp.dest(BUILD_PATH))
     ;
@@ -81,14 +94,14 @@ gulp.task('uglify', ['browserify'], function() {
 
 // Watch tasks
 gulp.task('watch', function() {
-  gulp.watch(SCRIPT_PATH + 'modules/*.js', ['jshint', 'browserify', browserSync.reload]);
+  gulp.watch(scriptFiles, ['jshint', 'browserify', browserSync.reload]);
   gulp.watch(LESS_PATH + '**/*.less', ['less', browserSync.reload]);
   gulp.watch(THEME_PATH + '*.php', browserSync.reload);
 });
 
 gulp.task('browser-sync', function () {
    browserSync({
-      proxy: "www.testsite.com"
+      proxy: buildConfig.domain
    });
 });
 
@@ -109,7 +122,7 @@ gulp.task('git-push', ['git-commit'], function(done){
 
 // Rsync
 gulp.task('rsync', plugins.shell.task([
-  'rsync -e "ssh -p 2222" -avz --exclude-from "rsync-exclude-list.txt" ./ USER@SERVER-IP:FOLDER'
+  'rsync -e "ssh -p 2222" -avz --exclude-from "rsync-exclude-list.txt" ./ ' + buildConfig.remote
 ]));
 
 gulp.task(

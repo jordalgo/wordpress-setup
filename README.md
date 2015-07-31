@@ -45,6 +45,15 @@ php composer.phar update
 npm install
 ```
 
+#### Setup Build Config
+
+This is a config file to be used by Gulp. Rename the sample one
+and you can remove it from .gitignore to add it to your repo.
+
+```bash
+mv build-config-example.json build-config.json
+```
+
 #### Set up a local Mysql DB
 
 I usually use Sequel Pro for this but the CL is probably just as easy.

@@ -8,3 +8,4 @@ wp-content/themes/default/library/js/es5
 **/.DS_Store
 .htaccess
 vendor/
+build-config.json
