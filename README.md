@@ -68,10 +68,10 @@ Replace the 'domain' and 'remote' key values with your own.
 #### Setup your Theme
 
 * Copy and rename the 'default' folder in the 'wp-content/themes' directory
-* Change the references to the 'default' them in .gitignore
+* Change the references to the 'default' theme in .gitignore
 * Change the 'default' theme reference in "activeThemes" in your build-config.json
 
-#### Set up a Mysql DB
+#### Set up a MySQL Database
 
 You can do this on the server or through the many helpful hosting control panel tools.
 
@@ -85,7 +85,7 @@ gulp deploy
 
 #### Setting up Environment Vars
 
-!Important!
+*!Important!*
 
 There are two examples of htaccess files in this repo (local & remote).
 DO NOT make any changes to htaccess-remote and commit these changes, as it's
@@ -99,8 +99,8 @@ cp htaccess-remote .htaccess
 
 Then you want to do the following for this remote .htaccess file:
 
-* (Generate wordpress secret keys)[https://api.wordpress.org/secret-key/1.1/salt/] and add them to .htaccess
-* Add your database information
+* [Generate wordpress secret keys](https://api.wordpress.org/secret-key/1.1/salt/) and add them to .htaccess
+* Add your database information to this .htaccess
 
 When you are developing locally do the same as above but use the 'htaccess-local' file
 as your base and generate new secret keys and use different database variables.
@@ -110,6 +110,8 @@ as your base and generate new secret keys and use different database variables.
 In your web browser go to 'www.domain.com/wordpress/wp-admin/install.php'.
 
 #### Congrats! You Should hopefully have a working wordpress setup!
+
+___
 
 ## Local Development and Setup
 
@@ -159,6 +161,8 @@ In your web browser go to 'www.domain.com/wordpress/wp-admin/install.php'.
 This should point to your local instance of your wordpress setup and DB.
 
 #### Congrats! You should have a local working wordpress setup.
+
+___
 
 ## Updating Wordpress Core and Plugins
 
