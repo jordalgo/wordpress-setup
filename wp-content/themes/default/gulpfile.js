@@ -4,6 +4,7 @@ var plugins = require('gulp-load-plugins')();
 var browserifyHandlebars = require('browserify-handlebars');
 var browserSync = require('browser-sync');
 var argv = require('yargs').argv;
+var buildConf = require('../../../build-config.json');
 
 // Error Handler
 function onError(err) {
@@ -78,28 +79,10 @@ gulp.task('watch', function() {
 
 gulp.task('browser-sync', function () {
    browserSync({
-      proxy: 'www.testsite.us'
+      proxy: buildConf.domain
    });
 });
 
-gulp.task(
-  'default',
-  [
-    'less'
-    , 'jshint'
-    , 'browserify'
-    , 'watch'
-    , 'browser-sync'
-  ]
-);
-
-// run this task with a commit message gulp deploy --commit="commit message"
-gulp.task(
-  'prod',
-  [
-    'minify-css'
-    , 'jshint'
-    , 'uglify'
-  ]
-);
+gulp.task('default', ['less', 'jshint', 'browserify', 'watch', 'browser-sync']);
+gulp.task('prod', ['minify-css', 'jshint', 'uglify']);
 

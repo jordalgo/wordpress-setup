@@ -1,3 +1,5 @@
 {
-  "remote": "USER@IP:FOLDER"
+  "remote": "USER@IP:FOLDER",
+  "activeThemes": ["default"],
+  "domain": "www.testsite.us"
 }

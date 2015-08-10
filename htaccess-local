@@ -4,6 +4,17 @@ SetEnv DB_NAME wp
 SetEnv DB_USER wp_user
 SetEnv DB_PASSWORD wp_pass
 SetEnv DB_HOST wp_host
+SetEnv TABLE_PREFIX table_prefix
+
+# Remember to add quotes around these generated keys
+SetEnv AUTH_KEY "auth_key"
+SetEnv SECURE_AUTH_KEY "secure_auth_key"
+SetEnv LOGGED_IN_KEY "logged_in_key"
+SetEnv NONCE_KEY "nonce_key"
+SetEnv AUTH_SALT "auth_salt"
+SetEnv SECURE_AUTH_SALT "secure_auth_salt"
+SetEnv LOGGED_IN_SALT "logged_in_salt"
+SetEnv NONCE_SALT "nonce_salt"
 
 # This is for wordpress permalinks. Delete if not used.
 <IfModule mod_rewrite.c>

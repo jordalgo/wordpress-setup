@@ -4,18 +4,11 @@ var path = require('path');
 var plugins = require('gulp-load-plugins')();
 var buildConf = require('./build-config.json');
 
-function getFolders(dir) {
-  return fs.readdirSync(dir)
-  .filter(function(file) {
-    return fs.statSync(path.join(dir, file)).isDirectory();
-  });
-}
-
 var THEME_PATH = 'wp-content/themes';
-var folders = getFolders(THEME_PATH);
+var activeThemes = buildConf.activeThemes;
 var prodTasks = [];
 
-folders.forEach(function(theme) {
+activeThemes.forEach(function(theme) {
   var name = theme + '-prod';
   gulp.task(name, function(){
     return plugins

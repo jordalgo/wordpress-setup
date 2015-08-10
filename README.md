@@ -13,7 +13,7 @@ This setup assumes that you are familiar the following:
 * [Less](http://lesscss.org/)
 * [rsync](http://linux.die.net/man/1/rsync)
 
-Though you can customize the build process of your template as long as you leave an 'prod' entry in the package.json file of your new theme; this is what the wordpress wrapper runs before rsycning the files up to your server.
+Though you can customize the build process of your template as long as you leave a 'prod' entry in the 'scripts' key of the package.json file of your new theme; this is what the wordpress wrapper runs before rsycning the files up to your server.
 
 I'm also assuming you have ssh access to the server you will be deploying this website to. However, I'm sure there are gulp plugins for using FTP instead.
 
@@ -23,7 +23,7 @@ I'm also assuming you have ssh access to the server you will be deploying this w
 * [Setting up Apache, MySQL, and PHP locally](http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/)
 * [Installing wordpress](https://codex.wordpress.org/Installing_WordPress)
 
-#### Clone this Repo and Setup Remotes
+#### Clone this Repo or Fork this Repo
 
 ```bash
 git clone https://github.com/jordalgo/wordpress-setup.git my-new-site
@@ -41,36 +41,81 @@ OR
 php composer.phar update
 ```
 
-#### Download Wordpress Wrapper Dependencies
+#### Download NPM Dependencies
+
+For the wordpress wrapper:
 
 ```bash
 npm install
 ```
 
-#### Rename Default Theme Folder
+For the theme:
 
 ```bash
-mv wp-content/themes/default wp-content/themes/mytheme
+cd wp-content/themes/default && npm install
 ```
-
-#### Update .gitignore
-
-Change the theme build folder references according to your new theme folder name (above).
 
 #### Setup Build Config
 
-This is a config file to be used by Gulp. Rename the sample one
-and you can remove it from .gitignore to add it to your repo.
+This is a config file to be used by Gulp. Rename the sample one.
 
 ```bash
-mv build-config-example.json build-config.json
+cp build-config-example.json build-config.json
 ```
 
-#### Set up a local Mysql DB
+Replace the 'domain' and 'remote' key values with your own.
 
-I usually use Sequel Pro for this but the CL is probably just as easy.
+#### Setup your Theme
 
-#### Add an entry in '/etc/apache2/extra/httpd-vhosts.conf'
+* Copy and rename the 'default' folder in the 'wp-content/themes' directory
+* Change the references to the 'default' them in .gitignore
+* Change the 'default' theme reference in "activeThemes" in your build-config.json
+
+#### Set up a Mysql DB
+
+You can do this on the server or through the many helpful hosting control panel tools.
+
+#### Deploy to Production
+
+This will deploy all the above code to your remote server.
+
+```bash
+gulp deploy
+```
+
+#### Setting up Environment Vars
+
+!Important!
+
+There are two examples of htaccess files in this repo (local & remote).
+DO NOT make any changes to htaccess-remote and commit these changes, as it's
+very insecure to have a potentially public record of your environmental variables.
+Instead when you add all these files to your server, ssh into your server
+and copy the htaccess-remote file to a .htaccess file.
+
+```bash
+cp htaccess-remote .htaccess
+```
+
+Then you want to do the following for this remote .htaccess file:
+
+* (Generate wordpress secret keys)[https://api.wordpress.org/secret-key/1.1/salt/] and add them to .htaccess
+* Add your database information
+
+When you are developing locally do the same as above but use the 'htaccess-local' file
+as your base and generate new secret keys and use different database variables.
+
+#### Configure the DB
+
+In your web browser go to 'www.domain.com/wordpress/wp-admin/install.php'.
+
+#### Congrats! You Should hopefully have a working wordpress setup!
+
+## Local Development and Setup
+
+#### Set up Domain and Virtual Host
+
+Add an entry in '/etc/apache2/extra/httpd-vhosts.conf'
 
 Example:
 ```
@@ -84,16 +129,17 @@ Example:
 </VirtualHost>
 ```
 
-#### Generate Wordpress Keys and Salts for wp-config.php
-
-You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
-And then add them to the wp-config.php in the root directory.
-
 #### Add entry or un-comment entry in '/private/etc/hosts'
 
 ```bash
-#127.0.0.1 www.domain.com
+127.0.0.1 www.domain.com
 ```
+
+#### Setup a Local DB
+
+* Start your MySQL server
+* Create a local db (I use Sequel Pro but there are many other tools to do this.)
+* Configure your local .htaccess (see above)
 
 #### Start MySQL and Apache
 
@@ -101,33 +147,18 @@ And then add them to the wp-config.php in the root directory.
 sudo apachectl start
 ```
 
-#### Copy htaccess-local (for local development)
-
-```bash
-cp htaccess-local .htacces
-```
-
-You'll have to also run this on your server but use 'htaccess-remote'
-and make sure not to add it to your git repo as this will contain sensitive
-information about your database and server configuration.
-
-#### Configure the DB
-
-In your web browser go to 'www.domain.com/wordpress/wp-admin/install.php'.
-
-## Development
-
-Development is done within individual theme folders.
+#### Set up your theme for development
 
 ```bash
 cd wp-content/themes/default && npm run dev
 ```
 
-## Deploying to Production
+#### Configure the DB
 
-```bash
-gulp deploy
-```
+In your web browser go to 'www.domain.com/wordpress/wp-admin/install.php'.
+This should point to your local instance of your wordpress setup and DB.
+
+#### Congrats! You should have a local working wordpress setup.
 
 ## Updating Wordpress Core and Plugins
 
