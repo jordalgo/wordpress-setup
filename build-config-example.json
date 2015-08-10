@@ -1,20 +1,3 @@
 {
-  "domain": "www.testsite.us",
-  "remote": "USER@IP:FOLDER",
-  "themePath": "wp-content/themes/default/",
-  "lessPath": "library/less/",
-  "scriptPath": "library/js/",
-  "buildPath": "library/build/",
-  "style": ["style", "style-base"],
-  "es6": true,
-  "scripts": ["modules/*.js"],
-  "browserify": {
-    "files": ["main.js"],
-    "shim": { 
-        "jQuery": {
-          "path": "wp-content/themes/default/library/js/vendor/jquery.min.js",
-          "exports": "$"
-        }
-    }
-  }
+  "remote": "USER@IP:FOLDER"
 }

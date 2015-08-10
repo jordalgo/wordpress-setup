@@ -13,6 +13,8 @@ This setup assumes that you are familiar the following:
 * [Less](http://lesscss.org/)
 * [rsync](http://linux.die.net/man/1/rsync)
 
+Though you can customize the build process of your template as long as you leave an 'prod' entry in the package.json file of your new theme; this is what the wordpress wrapper runs before rsycning the files up to your server.
+
 I'm also assuming you have ssh access to the server you will be deploying this website to. However, I'm sure there are gulp plugins for using FTP instead.
 
 ## Setup
@@ -39,11 +41,21 @@ OR
 php composer.phar update
 ```
 
-#### Download gulp, js, and css dependencies.
+#### Download Wordpress Wrapper Dependencies
 
 ```bash
 npm install
 ```
+
+#### Rename Default Theme Folder
+
+```bash
+mv wp-content/themes/default wp-content/themes/mytheme
+```
+
+#### Update .gitignore
+
+Change the theme build folder references according to your new theme folder name (above).
 
 #### Setup Build Config
 
@@ -105,16 +117,12 @@ In your web browser go to 'www.domain.com/wordpress/wp-admin/install.php'.
 
 ## Development
 
-```bash
-gulp
-```
+-- Under construction --
 
 ## Deploying to Production
 
-Make sure to edit your gulpfile's rsync task so that it pushes to the correct server.
-
 ```bash
-gulp deploy --commit="commit message"
+gulp deploy
 ```
 
 ## Updating Wordpress Core and Plugins
@@ -129,7 +137,8 @@ by editing the 'composer.json' file.
 ## Todos
 * Explore using Timber/Tig
 * Add SEO Plugin
-* Add Babel
+* Use Eslint in the default template instead of jshint
+* Fix the development workflow
 
 ## Extra Information
 
