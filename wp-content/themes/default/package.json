@@ -6,7 +6,7 @@
   },
   "devDependencies": {
     "babel": "^5.8.19",
-    "browser-sync": "~1.8.2",
+    "browser-sync": "*",
     "browserify-handlebars": "~1.0.0",
     "gulp": "*",
     "gulp-babel": "^5.2.0",

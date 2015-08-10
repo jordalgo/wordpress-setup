@@ -117,7 +117,11 @@ In your web browser go to 'www.domain.com/wordpress/wp-admin/install.php'.
 
 ## Development
 
--- Under construction --
+Development is done within individual theme folders.
+
+```bash
+cd wp-content/themes/default && npm run dev
+```
 
 ## Deploying to Production
 

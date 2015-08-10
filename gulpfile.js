@@ -11,14 +11,15 @@ function getFolders(dir) {
   });
 }
 
-var folders = getFolders('wp-content/themes');
+var THEME_PATH = 'wp-content/themes';
+var folders = getFolders(THEME_PATH);
 var prodTasks = [];
 
 folders.forEach(function(theme) {
   var name = theme + '-prod';
   gulp.task(name, function(){
     return plugins
-    .run('npm run prod', { cwd: 'wp-content/themes/default' })
+    .run('npm run prod', { cwd: THEME_PATH + '/' + theme })
     .exec();
   });
   prodTasks.push(name);

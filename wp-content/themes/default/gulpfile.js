@@ -78,7 +78,7 @@ gulp.task('watch', function() {
 
 gulp.task('browser-sync', function () {
    browserSync({
-      proxy: 'www.testsite.com'
+      proxy: 'www.testsite.us'
    });
 });
 
