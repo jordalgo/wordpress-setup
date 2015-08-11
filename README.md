@@ -52,7 +52,7 @@ npm install
 For the theme:
 
 ```bash
-cd wp-content/themes/default && npm install
+(cd wp-content/themes/default && npm install)
 ```
 
 #### Setup Build Config

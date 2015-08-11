@@ -18,11 +18,9 @@ activeThemes.forEach(function(theme) {
   prodTasks.push(name);
 });
 
-gulp.task('rsync', function() {
-  plugins.run(
-  'rsync -e "ssh -p 2222" -avz --exclude-from "rsync-exclude-list.txt" ./ ' + buildConf.remote)
-  .exec();
-});
+gulp.task('rsync', plugins.shell.task([
+  'rsync -e "ssh -p 2222" -avz --exclude-from "rsync-exclude-list.txt" ./ ' + buildConf.remote
+]));
 
 gulp.task('deploy', prodTasks, function() { gulp.start('rsync'); } );
 

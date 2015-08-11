@@ -5,9 +5,9 @@
     "type": "git"
   },
   "devDependencies": {
-    "gulp": "~3.8.10",
-    "gulp-load-plugins": "~0.8.0",
-    "gulp-rsync": "0.0.5",
+    "gulp": "*",
+    "gulp-load-plugins": "^0.8.0",
+    "gulp-rsync": "^0.0.5",
     "gulp-run": "^1.6.10",
     "gulp-shell": "^0.3.0"
   },
