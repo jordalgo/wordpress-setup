@@ -8,3 +8,5 @@ wp-content/themes/default/library/js/es5
 **/.DS_Store
 .htaccess
 vendor/
+composer.phar
+composer.lock
