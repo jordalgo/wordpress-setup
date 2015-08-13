@@ -20,14 +20,14 @@ gulp.task('less', function() {
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
     .on('error', onError)
-    .pipe(gulp.dest('library/build/css/'))
+    .pipe(gulp.dest('library/build/'))
     ;
 });
 
 gulp.task('minify-css', ['less'], function() {
   return gulp.src(['library/build/style.css', 'library/build/style-base.css'])
     .pipe(plugins.minifyCss({ processImport: false }))
-    .pipe(gulp.dest('library/build/css/'))
+    .pipe(gulp.dest('library/build/'))
     ;
 });
 
