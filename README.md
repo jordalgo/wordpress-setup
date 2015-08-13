@@ -41,15 +41,7 @@ OR
 php composer.phar update
 ```
 
-#### Download NPM Dependencies
-
-For the wordpress wrapper:
-
-```bash
-npm install
-```
-
-For the theme:
+#### Download NPM Dependencies (if using the default theme)
 
 ```bash
 (cd wp-content/themes/default && npm install)
@@ -80,7 +72,7 @@ You can do this on the server or through the many helpful hosting control panel 
 This will deploy all the above code to your remote server.
 
 ```bash
-gulp deploy
+node deploy.js
 ```
 
 #### Setting up Environment Vars
