@@ -21,10 +21,9 @@ function rsync() {
       '-avz',
       '--exclude-from',
       'rsync-exclude-list.txt',
-      './ ',
+      './',
       buildConf.remote
-    ],
-    { cwd: './' }
+    ]
   );
 
   r.stdout.pipe(process.stdout);
