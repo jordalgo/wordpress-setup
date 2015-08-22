@@ -16,6 +16,36 @@ SetEnv SECURE_AUTH_SALT "secure_auth_salt"
 SetEnv LOGGED_IN_SALT "logged_in_salt"
 SetEnv NONCE_SALT "nonce_salt"
 
+#AIOWPS_ENABLE_BRUTE_FORCE_PREVENTION_START
+# Change the "secretlogin" to a url friendly word/phrase
+RewriteEngine On
+RewriteCond %{REQUEST_URI} (wp-admin|wp-login)
+RewriteCond %{HTTP_COOKIE} !secretlogin= [NC]
+RewriteCond %{HTTP_COOKIE} !aiowps_cookie_test_5fuhy5c3fa= [NC]
+RewriteRule .* http://127.0.0.1 [L]
+#AIOWPS_ENABLE_BRUTE_FORCE_PREVENTION_END
+
+#AIOWPS_PREVENT_IMAGE_HOTLINKS_START
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g?|png)$ [NC]
+RewriteCond %{HTTP_REFERER} !^http(s)?://(.*)?\.?SITEADDRESS\.com [NC]
+RewriteRule \.(gif|jpe?g?|png)$ - [F,NC,L]
+</IfModule>
+#AIOWPS_PREVENT_IMAGE_HOTLINKS_END
+
+#AIOWPS_BLOCK_SPAMBOTS_START
+<IfModule mod_rewrite.c>
+RewriteCond %{REQUEST_METHOD} POST
+RewriteCond %{REQUEST_URI} ^(.*)?wp-comments-post\.php(.*)$
+RewriteCond %{HTTP_REFERER} !^http(s)?://(.*)?\.SITEADDRESS\.com [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^$
+RewriteRule .* http://127.0.0.1 [L]
+</IfModule>
+#AIOWPS_BLOCK_SPAMBOTS_END
+
 # Block the include-only files.
 <IfModule mod_rewrite.c>
 RewriteEngine On
@@ -163,44 +193,6 @@ Redirectmatch 403 Table\/Latest\/index\.
 </IfModule>
 #AIOWPS_ADVANCED_CHAR_STRING_FILTER_END
 
-#AIOWPS_ENABLE_BRUTE_FORCE_PREVENTION_START (may need to reset this http cookie per site)
-RewriteEngine On
-RewriteCond %{REQUEST_URI} (wp-admin|wp-login)
-RewriteCond %{HTTP_COOKIE} !secretlogin= [NC]
-RewriteCond %{HTTP_COOKIE} !aiowps_cookie_test_5fuhy5c3fa= [NC]
-RewriteRule .* http://127.0.0.1 [L]
-#AIOWPS_ENABLE_BRUTE_FORCE_PREVENTION_END
-
-#AIOWPS_PREVENT_IMAGE_HOTLINKS_START
-<IfModule mod_rewrite.c>
-RewriteEngine on
-RewriteCond %{HTTP_REFERER} !^$
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g?|png)$ [NC]
-RewriteCond %{HTTP_REFERER} !^http(s)?://(.*)?\.?SITEADDRESS\.com [NC]
-RewriteRule \.(gif|jpe?g?|png)$ - [F,NC,L]
-</IfModule>
-#AIOWPS_PREVENT_IMAGE_HOTLINKS_END
-
-#AIOWPS_BLOCK_SPAMBOTS_START
-<IfModule mod_rewrite.c>
-RewriteCond %{REQUEST_METHOD} POST
-RewriteCond %{REQUEST_URI} ^(.*)?wp-comments-post\.php(.*)$
-RewriteCond %{HTTP_REFERER} !^http(s)?://(.*)?\.SITEADDRESS\.com [NC,OR]
-RewriteCond %{HTTP_USER_AGENT} ^$
-RewriteRule .* http://127.0.0.1 [L]
-</IfModule>
-#AIOWPS_BLOCK_SPAMBOTS_END
-
-#AIOWPS_LOGIN_WHITELIST_START
-# Uncomment if you only want people to edit from certain IPs
-#<FilesMatch "^(wp-login\.php)">
-#Order Allow,Deny
-#Allow from SITEADDRESS
-#Allow from 192.254.186.151
-#Allow from 67.86.250.42
-#</FilesMatch>
-#AIOWPS_LOGIN_WHITELIST_END
 
 #AIOWPS_FIVE_G_BLACKLIST_START
 # 5G BLACKLIST/FIREWALL (2013)
