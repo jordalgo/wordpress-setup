@@ -17,7 +17,9 @@ function rsync() {
     'rsync',
     [
       '-e',
-      'ssh -p 2222',
+      'ssh',
+      '-p',
+      '2222',
       '-avz',
       '--exclude-from',
       'rsync-exclude-list.txt',
