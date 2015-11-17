@@ -23,6 +23,8 @@ I'm also assuming you have ssh access to the server you will be deploying this w
 * [Setting up Apache, MySQL, and PHP locally](http://jason.pureconcepts.net/2012/10/install-apache-php-mysql-mac-os-x/)
 * [Installing wordpress](https://codex.wordpress.org/Installing_WordPress)
 
+!Note! You may have to re-run the apache setup above if you've recently upgraded your OS.
+
 #### Clone this Repo or Fork this Repo
 
 ```bash
@@ -125,6 +127,10 @@ Example:
     ErrorLog "/private/var/log/apache2/apple.com-error_log"
     CustomLog "/private/var/log/apache2/apple.com-access_log" common
     ServerAdmin web@coolestguidesontheplanet.com
+    <Directory "/Users/jordalgo/Sites/eci">
+      AllowOverride All
+      Require all granted
+    </Directory>
 </VirtualHost>
 ```
 
