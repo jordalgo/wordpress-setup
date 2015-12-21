@@ -158,12 +158,12 @@ This should point to your local instance of your wordpress setup and DB.
 
 #### Congrats! You should have a local working wordpress setup.
 
-<a href="themeflow"></a>
+<a name="themeflow"></a>
 ## Theme Workflow
 
 The current default theme is using gulp to generate the css and javascript files. This can be changed. You can use webpack, or grunt, or none of it. If there are things that need to get built in your theme before they get deployed to the remote host server, just make sure to add the script to your theme's package.json in the `prod` entry.
 
-<a href="updating"></a>
+<a name="updating"></a>
 ## Updating Wordpress Core and Plugins
 
 ```bash
