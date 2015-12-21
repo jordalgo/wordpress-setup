@@ -4,7 +4,7 @@ This is primarily for Mac users at the moment but I'm sure it can also be used o
 
 ## Requirements
 
-This setup assumes that you are familiar the following:
+This setup assumes that you are familiar with the following:
 * [Git](https://git-scm.com/)
 * [Composer](https://getcomposer.org/)
 * [Wpackagist](http://wpackagist.org/)
