@@ -8,7 +8,7 @@ This workflow operates by having a dumb receiver (your hosting server) receive f
 * [Requirements](#requirements)
 * [Setup](#setup)
 * [Local Dev Setup](#local)
-* [Theme Workflow](#theme)
+* [Theme Workflow](#themeflow)
 * [Updating](#updating)
 
 <a name="requirements"></a>
@@ -158,7 +158,7 @@ This should point to your local instance of your wordpress setup and DB.
 
 #### Congrats! You should have a local working wordpress setup.
 
-<a href="theme"></a>
+<a href="themeflow"></a>
 ## Theme Workflow
 
 The current default theme is using gulp to generate the css and javascript files. This can be changed. You can use webpack, or grunt, or none of it. If there are things that need to get built in your theme before they get deployed to the remote host server, just make sure to add the script to your theme's package.json in the `prod` entry.
