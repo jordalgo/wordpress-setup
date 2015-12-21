@@ -2,7 +2,7 @@
 
 This is primarily for Mac users at the moment but I'm sure it can also be used on a Windows or Linux machine with some adjustments.
 
-This workflow operates by having a dumb receiver (your hosting server) receive files from a local setup via a deploy script that runs rsync. The files that are versioned (Git) are your theme files and some configuration files; that's it. The wordpress core and plugins are all downloaded locally (versioned via composer) and pushed up to the hosting server (same deploy script), so you probably want to set up your dev env locally to make sure everything is working properly but this can work without it.
+This workflow operates by having a dumb receiver (your hosting server) receive files from a local setup via a [deploy script](./deploy.js) that runs rsync. The files that are versioned (Git) are your theme files and some configuration files; that's it. The wordpress core and plugins are all downloaded locally (versioned via composer) and pushed up to the hosting server (same deploy script), so you probably want to set up your dev env locally to make sure everything is working properly but this can work without it.
 
 ## Table of Contents
 * [Requirements](#requirements)
@@ -61,13 +61,13 @@ composer.json is used to specify the wordpress and wordpress plugin versions tha
 
 #### Deploy to Production
 
-This will deploy all the above code to your remote server.
+This will deploy all the above code to your remote server. Make sure you run it from the root of your site.
 
 ```bash
 node deploy.js
 ```
 
-#### Set up a MySQL Database Remotely
+#### Create a MySQL Database Remotely
 
 You can do this on the server or through the many helpful hosting control panel tools.
 
@@ -132,7 +132,7 @@ Example:
 127.0.0.1 www.domain.com
 ```
 
-#### Setup a Local DB
+#### Create a Local MySQL Database
 
 * Start your MySQL server
 * Create a local db (I use Sequel Pro but there are many other tools to do this.)
