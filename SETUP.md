@@ -48,6 +48,10 @@ that you want to install for your setup. Don't remove the main wordpress key
 but add or remove plugins as needed. The current ones in this file are just
 a few favorites.
 
+#### Install Composer
+
+If not already installed globally. [Instructions](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
+
 #### Download Wordpress and Plugins
 
 ```bash
